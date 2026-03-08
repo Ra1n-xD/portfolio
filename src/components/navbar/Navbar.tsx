@@ -4,6 +4,8 @@ import { useTheme } from '../../context/ThemeContext';
 import { openContactModal } from '../sections/Hero';
 import logo from '../../img/fronted-logo.jpg';
 
+const NAV_IDS = ['about', 'experience', 'projects', 'mentoring'];
+
 function Navbar() {
     const { t, lang, toggleLang } = useLang();
     const { theme, toggleTheme } = useTheme();
@@ -15,10 +17,8 @@ function Navbar() {
         { label: t.nav.about, id: 'about' },
         { label: t.nav.experience, id: 'experience' },
         { label: t.nav.projects, id: 'projects' },
-        { label: t.nav.mentoring, id: 'mentoring' },
+        { label: t.nav.mentoring, id: 'mentoring' }
     ];
-
-    const NAV_IDS = ['about', 'experience', 'projects', 'mentoring'];
 
     useEffect(() => {
         const onScroll = () => {
@@ -32,14 +32,16 @@ function Navbar() {
         };
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         document.body.style.overflow = mobileOpen ? 'hidden' : '';
-        return () => { document.body.style.overflow = ''; };
+        return () => {
+            document.body.style.overflow = '';
+        };
     }, [mobileOpen]);
 
-    const scrollTo = (id) => {
+    const scrollTo = (id: string) => {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
         setMobileOpen(false);
     };
@@ -49,16 +51,16 @@ function Navbar() {
             <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
                 <div className="container">
                     <span className="nav-logo" onClick={() => scrollTo('home')}>
-                        <img className="nav-logo-icon" src={logo} alt="FrontEd" width="22" height="22" /><span>Front<span className="a">Ed</span></span>
+                        <img className="nav-logo-icon" src={logo} alt="FrontEd" width="22" height="22" />
+                        <span>
+                            Front<span className="a">Ed</span>
+                        </span>
                     </span>
 
                     <ul className="nav-list">
                         {navLinks.map((link) => (
                             <li key={link.id}>
-                                <button
-                                    className={`nav-list__link${active === link.id ? ' active' : ''}`}
-                                    onClick={() => scrollTo(link.id)}
-                                >
+                                <button className={`nav-list__link${active === link.id ? ' active' : ''}`} onClick={() => scrollTo(link.id)}>
                                     {link.label}
                                 </button>
                             </li>
@@ -73,32 +75,34 @@ function Navbar() {
                         <button className="nav-toggle" onClick={toggleTheme} title={theme === 'dark' ? 'Light mode' : 'Dark mode'}>
                             {theme === 'dark' ? (
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <circle cx="12" cy="12" r="5"/>
-                                    <line x1="12" y1="1" x2="12" y2="3"/>
-                                    <line x1="12" y1="21" x2="12" y2="23"/>
-                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                                    <line x1="1" y1="12" x2="3" y2="12"/>
-                                    <line x1="21" y1="12" x2="23" y2="12"/>
-                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                                    <circle cx="12" cy="12" r="5" />
+                                    <line x1="12" y1="1" x2="12" y2="3" />
+                                    <line x1="12" y1="21" x2="12" y2="23" />
+                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                                    <line x1="1" y1="12" x2="3" y2="12" />
+                                    <line x1="21" y1="12" x2="23" y2="12" />
+                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                                 </svg>
                             ) : (
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                                 </svg>
                             )}
                         </button>
 
-                        <button className="nav-cta" onClick={() => { setMobileOpen(false); openContactModal(); }}>
+                        <button
+                            className="nav-cta"
+                            onClick={() => {
+                                setMobileOpen(false);
+                                openContactModal();
+                            }}
+                        >
                             {t.nav.contact}
                         </button>
 
-                        <button
-                            className={`nav-burger${mobileOpen ? ' open' : ''}`}
-                            onClick={() => setMobileOpen((v) => !v)}
-                            aria-label="Menu"
-                        >
+                        <button className={`nav-burger${mobileOpen ? ' open' : ''}`} onClick={() => setMobileOpen((v) => !v)} aria-label="Menu">
                             <span />
                             <span />
                             <span />
@@ -110,11 +114,7 @@ function Navbar() {
             {mobileOpen && (
                 <div className="nav-mobile">
                     {navLinks.map((link) => (
-                        <button
-                            key={link.id}
-                            className={`nav-list__link${active === link.id ? ' active' : ''}`}
-                            onClick={() => scrollTo(link.id)}
-                        >
+                        <button key={link.id} className={`nav-list__link${active === link.id ? ' active' : ''}`} onClick={() => scrollTo(link.id)}>
                             {link.label}
                         </button>
                     ))}

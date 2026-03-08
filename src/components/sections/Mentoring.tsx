@@ -4,9 +4,10 @@ import { useLang } from '../../context/LangContext';
 const fadeIn = {
     hidden: { opacity: 0, y: 24 },
     visible: (i = 0) => ({
-        opacity: 1, y: 0,
-        transition: { duration: 0.5, delay: i * 0.08, ease: [0.4, 0, 0.2, 1] },
-    }),
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.5, delay: i * 0.08, ease: [0.4, 0, 0.2, 1] }
+    })
 };
 
 function Mentoring() {
@@ -16,11 +17,7 @@ function Mentoring() {
     return (
         <section className="section mentoring-section" id="mentoring">
             <div className="container">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.15 }}
-                >
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }}>
                     <motion.div className="section-label" variants={fadeIn} custom={0}>
                         {m.label}
                     </motion.div>
@@ -56,15 +53,10 @@ function Mentoring() {
                             </div>
 
                             <div className="mentoring-cta-wrap">
-                                <a
-                                    href="https://t.me/ra1n_xd"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="btn-primary mentoring-cta-btn"
-                                >
+                                <a href="https://t.me/ra1n_xd" target="_blank" rel="noopener noreferrer" className="btn-primary mentoring-cta-btn">
                                     {m.cta}
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
                                 </a>
                             </div>

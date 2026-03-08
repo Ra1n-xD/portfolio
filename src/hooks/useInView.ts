@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
-export function useInView({ threshold = 0.1, once = true } = {}) {
-    const ref = useRef(null);
+interface UseInViewOptions {
+    threshold?: number;
+    once?: boolean;
+}
+
+export function useInView<T extends HTMLElement = HTMLElement>({ threshold = 0.1, once = true }: UseInViewOptions = {}): [React.RefObject<T>, boolean] {
+    const ref = useRef<T>(null!);
     const [inView, setInView] = useState(false);
 
     useEffect(() => {

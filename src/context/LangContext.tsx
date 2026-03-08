@@ -1,8 +1,132 @@
-import { createContext, useContext, useState, useCallback } from 'react';
+import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
 
-const LangContext = createContext();
+type Lang = 'en' | 'ru';
 
-const translations = {
+interface Stat {
+    number: string;
+    label: string;
+}
+
+interface SkillGroup {
+    icon: string;
+    title: string;
+    tags: string[];
+}
+
+export interface WorkItem {
+    role: string;
+    company: string;
+    period: string;
+    current: boolean;
+    bullets: string[];
+}
+
+export interface ProjectItem {
+    icon: string;
+    title: string;
+    period: string;
+    desc: string;
+    tags: string[];
+    link?: string;
+}
+
+export interface MentoringProject {
+    badge: string | null;
+    title: string;
+    period: string;
+    desc: string;
+    tags: string[];
+}
+
+interface PriceItem {
+    name: string;
+    value: string;
+}
+
+interface ContactItem {
+    icon: string;
+    label: string;
+    value: string;
+    href: string;
+}
+
+export interface Translations {
+    nav: {
+        about: string;
+        skills: string;
+        experience: string;
+        projects: string;
+        mentoring: string;
+        contact: string;
+    };
+    hero: {
+        badge: string;
+        name: string;
+        firstName: string;
+        lastName: string;
+        subtitle: string;
+        desc: string;
+        cta: string;
+        viewProjects: string;
+        scroll: string;
+    };
+    about: {
+        label: string;
+        title: string;
+        p1: ReactNode;
+        p2: ReactNode;
+        p3: ReactNode;
+        stats: Stat[];
+    };
+    skills: {
+        label: string;
+        title: string;
+        groups: SkillGroup[];
+    };
+    experience: {
+        label: string;
+        workTitle: string;
+        now: string;
+        work: WorkItem[];
+    };
+    projectCards: {
+        label: string;
+        title: string;
+        items: ProjectItem[];
+        mentoring: MentoringProject;
+    };
+    mentoring: {
+        label: string;
+        title: string;
+        about: string;
+        aboutExtra: string;
+        helpTitle: string;
+        helpItems: string[];
+        disclaimer: string;
+        priceTitle: string;
+        prices: PriceItem[];
+        cta: string;
+    };
+    contact: {
+        label: string;
+        title: string;
+        desc: string;
+        items: ContactItem[];
+    };
+    footer: {
+        copy: string;
+    };
+}
+
+interface LangContextValue {
+    lang: Lang;
+    toggleLang: () => void;
+    t: Translations;
+}
+
+const LangContext = createContext<LangContextValue | undefined>(undefined);
+
+const translations: Record<Lang, Translations> = {
     en: {
         nav: {
             about: 'About',
@@ -317,8 +441,8 @@ const translations = {
     }
 };
 
-export function LangProvider({ children }) {
-    const [lang, setLang] = useState(() => {
+export function LangProvider({ children }: { children: ReactNode }) {
+    const [lang, setLang] = useState<Lang>(() => {
         const saved = localStorage.getItem('portfolio-lang');
         return saved === 'ru' || saved === 'en' ? saved : 'en';
     });
@@ -337,5 +461,7 @@ export function LangProvider({ children }) {
 }
 
 export function useLang() {
-    return useContext(LangContext);
+    const ctx = useContext(LangContext);
+    if (!ctx) throw new Error('useLang must be used within LangProvider');
+    return ctx;
 }

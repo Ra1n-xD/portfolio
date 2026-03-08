@@ -31,14 +31,12 @@ jobs:
       - run: npm ci
 
       - run: npm run build
-        env:
-          CI: false
 
       - uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: dist
 
       - id: deployment
         uses: actions/deploy-pages@v4
