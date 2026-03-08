@@ -86,7 +86,7 @@ body {
 /* background canvas handles backdrop — no dot-grid needed */
 
 .container {
-    max-width: 1160px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 28px;
 }
@@ -130,7 +130,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 48px);
-    max-width: 1160px;
+    max-width: 1280px;
     height: 52px;
     z-index: 100;
     display: flex;
@@ -376,7 +376,7 @@ body {
     gap: 48px;
     align-items: center;
     width: 100%;
-    max-width: 960px;
+    max-width: 1080px;
     margin: 0 auto;
 }
 
