@@ -1,8 +1,8 @@
 {
-  "name": "portfolio-react",
+  "name": "portfolio",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://ra1n-xd.github.io/portfolio-react/",
+  "homepage": "https://ra1n-xd.github.io/portfolio/",
   "dependencies": {
     "framer-motion": "^11.18.2",
     "react": "^18.2.0",
