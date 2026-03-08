@@ -351,6 +351,9 @@
     .profile-links {
         margin-bottom: 0;
     }
+    .profile-tags {
+        margin-top: 18px;
+    }
 }
 
 @media (max-width: 640px) {

@@ -42,6 +42,11 @@ const ICONS = {
             <line x1="16" y1="17" x2="8" y2="17" />
             <polyline points="10 9 9 9 8 9" />
         </svg>
+    ),
+    twitch: (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
+        </svg>
     )
 };
 
@@ -68,17 +73,17 @@ const ProfileCardContent = ({ t }: { t: Translations }) => (
                 <span className="profile-link-key">{ICONS.channel} TG Channel</span>
                 <span className="profile-link-val">@fronted_engineer</span>
             </a>
+            <a href="https://www.twitch.tv/fronted_ra1n" target="_blank" rel="noopener noreferrer" className="profile-link">
+                <span className="profile-link-key">{ICONS.twitch} Twitch</span>
+                <span className="profile-link-val">fronted_ra1n</span>
+            </a>
             <a href="https://github.com/Ra1n-xD" target="_blank" rel="noopener noreferrer" className="profile-link">
                 <span className="profile-link-key">{ICONS.github} GitHub</span>
-                <span className="profile-link-val">Ra1n-xD</span>
+                <span className="profile-link-val">ra1n-xd</span>
             </a>
             <a href="https://www.linkedin.com/in/chervonenko-ed" target="_blank" rel="noopener noreferrer" className="profile-link">
                 <span className="profile-link-key">{ICONS.linkedin} LinkedIn</span>
                 <span className="profile-link-val">chervonenko-ed</span>
-            </a>
-            <a href="mailto:ed.chervonenko@gmail.com" className="profile-link">
-                <span className="profile-link-key">{ICONS.email} Email</span>
-                <span className="profile-link-val">ed.chervonenko@…</span>
             </a>
             <a href="https://drive.google.com/drive/folders/1KZ_eu9n9IdUYwfX7PUSVSgQC4hz5nBMp" target="_blank" rel="noopener noreferrer" className="profile-link">
                 <span className="profile-link-key">{ICONS.cv} CV / Resume</span>
