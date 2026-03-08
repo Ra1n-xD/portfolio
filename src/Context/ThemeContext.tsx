@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
+import { STORAGE_KEYS } from '@/constants/storage';
 
 type Theme = 'light' | 'dark';
 
@@ -11,14 +12,14 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
     const [theme, setTheme] = useState<Theme>(() => {
-        const saved = localStorage.getItem('portfolio-theme');
+        const saved = localStorage.getItem(STORAGE_KEYS.THEME);
         if (saved === 'light' || saved === 'dark') return saved;
         return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
     });
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('portfolio-theme', theme);
+        localStorage.setItem(STORAGE_KEYS.THEME, theme);
     }, [theme]);
 
     const toggleTheme = useCallback(() => {

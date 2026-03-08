@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLang } from '@/Context/LangContext';
 import { useTheme } from '@/Context/ThemeContext';
-import { openContactModal } from '@/components/Sections/Hero';
+import { useModal } from '@/Context/ModalContext';
 import logo from '@/assets/fronted-logo.png';
 
 const NAV_IDS = ['about', 'experience', 'projects', 'mentoring'];
@@ -9,6 +9,7 @@ const NAV_IDS = ['about', 'experience', 'projects', 'mentoring'];
 function Navbar() {
     const { t, lang, toggleLang } = useLang();
     const { theme, toggleTheme } = useTheme();
+    const { openModal } = useModal();
     const [scrolled, setScrolled] = useState(false);
     const [active, setActive] = useState('');
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -96,7 +97,7 @@ function Navbar() {
                             className="nav-cta"
                             onClick={() => {
                                 setMobileOpen(false);
-                                openContactModal();
+                                openModal();
                             }}
                         >
                             {t.nav.contact}
@@ -117,7 +118,7 @@ function Navbar() {
                         {link.label}
                     </button>
                 ))}
-                <button className="nav-cta" onClick={() => { setMobileOpen(false); openContactModal(); }}>
+                <button className="nav-cta" onClick={() => { setMobileOpen(false); openModal(); }}>
                     {t.nav.contact}
                 </button>
             </div>

@@ -1,20 +1,12 @@
 import { motion } from 'framer-motion';
 import { useLang, type ProjectItem } from '@/Context/LangContext';
-
-const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: (i = 0) => ({
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, delay: i * 0.1, ease: [0.4, 0, 0.2, 1] }
-    })
-};
+import { fadeUp } from '@/constants/animations';
 
 const YT_VIDEO_ID = 'W2y0QlShyd0';
 const YT_URL = `https://www.youtube.com/live/${YT_VIDEO_ID}?si=vIflkj8zBXXuKTfH`;
 const YT_THUMB = `https://img.youtube.com/vi/${YT_VIDEO_ID}/maxresdefault.jpg`;
 
-function ProjectCard({ project, index }: { project: ProjectItem; index: number }) {
+const ProjectCard = ({ project, index }: { project: ProjectItem; index: number }) => {
     const content = (
         <>
             <div className="project-card-header">
@@ -33,31 +25,25 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
         </>
     );
 
+    const props = {
+        className: 'project-card',
+        variants: fadeUp,
+        initial: 'hidden' as const,
+        whileInView: 'visible' as const,
+        viewport: { once: true },
+        custom: index * 0.5
+    };
+
     if (project.link) {
         return (
-            <motion.a
-                key={project.title}
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-card"
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                custom={index * 0.5}
-            >
+            <motion.a href={project.link} target="_blank" rel="noopener noreferrer" {...props}>
                 {content}
             </motion.a>
         );
     }
 
-    return (
-        <motion.div key={project.title} className="project-card" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={index * 0.5}>
-            {content}
-        </motion.div>
-    );
-}
+    return <motion.div {...props}>{content}</motion.div>;
+};
 
 function Projects() {
     const { t } = useLang();
@@ -65,10 +51,10 @@ function Projects() {
     return (
         <section className="section" id="projects">
             <div className="container">
-                <motion.span className="section-label" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+                <motion.span className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0}>
                     {t.projectCards.label}
                 </motion.span>
-                <motion.h2 className="section-title" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}>
+                <motion.h2 className="section-title" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={1}>
                     {t.projectCards.title}
                 </motion.h2>
 

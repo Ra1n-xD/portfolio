@@ -1,16 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLang, type Translations } from '@/Context/LangContext';
+import { useModal } from '@/Context/ModalContext';
+import { fadeIn } from '@/constants/animations';
 import myPhoto from '@/assets/me.png';
-
-const fadeIn = {
-    hidden: { opacity: 0, y: 24 },
-    visible: (i = 0) => ({
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.55, delay: i * 0.1, ease: [0.4, 0, 0.2, 1] }
-    })
-};
 
 const ICONS = {
     telegram: (
@@ -52,90 +44,60 @@ const ICONS = {
     )
 };
 
-function ProfileCardContent({ t }: { t: Translations }) {
-    return (
-        <>
-            <div className="profile-head">
-                <div className="profile-avatar">
-                    <img src={myPhoto} alt="Eduard Chervonenko" />
-                </div>
-                <div className="profile-head-info">
-                    <div className="profile-name">{t.hero.name}</div>
-                    <div className="profile-role">{t.hero.subtitle}</div>
-                </div>
+const ProfileCardContent = ({ t }: { t: Translations }) => (
+    <>
+        <div className="profile-head">
+            <div className="profile-avatar">
+                <img src={myPhoto} alt="Eduard Chervonenko" />
             </div>
-
-            <div className="profile-divider" />
-
-            <div className="profile-links">
-                <a href="https://t.me/ra1n_xd" target="_blank" rel="noopener noreferrer" className="profile-link">
-                    <span className="profile-link-key">{ICONS.telegram} Telegram</span>
-                    <span className="profile-link-val">@ra1n_xd</span>
-                </a>
-                <a href="https://t.me/fronted_engineer" target="_blank" rel="noopener noreferrer" className="profile-link">
-                    <span className="profile-link-key">{ICONS.channel} TG Channel</span>
-                    <span className="profile-link-val">@fronted_engineer</span>
-                </a>
-                <a href="https://github.com/Ra1n-xD" target="_blank" rel="noopener noreferrer" className="profile-link">
-                    <span className="profile-link-key">{ICONS.github} GitHub</span>
-                    <span className="profile-link-val">Ra1n-xD</span>
-                </a>
-                <a href="https://www.linkedin.com/in/chervonenko-ed" target="_blank" rel="noopener noreferrer" className="profile-link">
-                    <span className="profile-link-key">{ICONS.linkedin} LinkedIn</span>
-                    <span className="profile-link-val">chervonenko-ed</span>
-                </a>
-                <a href="mailto:ed.chervonenko@gmail.com" className="profile-link">
-                    <span className="profile-link-key">{ICONS.email} Email</span>
-                    <span className="profile-link-val">ed.chervonenko@…</span>
-                </a>
-                <a href="https://drive.google.com/drive/folders/1KZ_eu9n9IdUYwfX7PUSVSgQC4hz5nBMp" target="_blank" rel="noopener noreferrer" className="profile-link">
-                    <span className="profile-link-key">{ICONS.cv} CV / Resume</span>
-                    <span className="profile-link-val">Google Drive</span>
-                </a>
+            <div className="profile-head-info">
+                <div className="profile-name">{t.hero.name}</div>
+                <div className="profile-role">{t.hero.subtitle}</div>
             </div>
+        </div>
 
-            <div className="profile-tags">
-                {['React', 'TypeScript', 'Next.js', 'NestJS'].map((tag) => (
-                    <span key={tag} className="profile-tag">
-                        {tag}
-                    </span>
-                ))}
-            </div>
-        </>
-    );
-}
+        <div className="profile-divider" />
 
-let _openContactModal = () => {};
-export function openContactModal() {
-    _openContactModal();
-}
+        <div className="profile-links">
+            <a href="https://t.me/ra1n_xd" target="_blank" rel="noopener noreferrer" className="profile-link">
+                <span className="profile-link-key">{ICONS.telegram} Telegram</span>
+                <span className="profile-link-val">@ra1n_xd</span>
+            </a>
+            <a href="https://t.me/fronted_engineer" target="_blank" rel="noopener noreferrer" className="profile-link">
+                <span className="profile-link-key">{ICONS.channel} TG Channel</span>
+                <span className="profile-link-val">@fronted_engineer</span>
+            </a>
+            <a href="https://github.com/Ra1n-xD" target="_blank" rel="noopener noreferrer" className="profile-link">
+                <span className="profile-link-key">{ICONS.github} GitHub</span>
+                <span className="profile-link-val">Ra1n-xD</span>
+            </a>
+            <a href="https://www.linkedin.com/in/chervonenko-ed" target="_blank" rel="noopener noreferrer" className="profile-link">
+                <span className="profile-link-key">{ICONS.linkedin} LinkedIn</span>
+                <span className="profile-link-val">chervonenko-ed</span>
+            </a>
+            <a href="mailto:ed.chervonenko@gmail.com" className="profile-link">
+                <span className="profile-link-key">{ICONS.email} Email</span>
+                <span className="profile-link-val">ed.chervonenko@…</span>
+            </a>
+            <a href="https://drive.google.com/drive/folders/1KZ_eu9n9IdUYwfX7PUSVSgQC4hz5nBMp" target="_blank" rel="noopener noreferrer" className="profile-link">
+                <span className="profile-link-key">{ICONS.cv} CV / Resume</span>
+                <span className="profile-link-val">Google Drive</span>
+            </a>
+        </div>
+
+        <div className="profile-tags">
+            {['React', 'TypeScript', 'Next.js', 'NestJS'].map((tag) => (
+                <span key={tag} className="profile-tag">
+                    {tag}
+                </span>
+            ))}
+        </div>
+    </>
+);
 
 function Hero() {
     const { t } = useLang();
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const open = useCallback(() => setModalOpen(true), []);
-    const close = useCallback(() => setModalOpen(false), []);
-
-    useEffect(() => {
-        _openContactModal = open;
-    }, [open]);
-
-    useEffect(() => {
-        if (modalOpen) {
-            document.body.style.overflow = 'hidden';
-            const onKey = (e: KeyboardEvent) => {
-                if (e.key === 'Escape') close();
-            };
-            window.addEventListener('keydown', onKey);
-            return () => {
-                document.body.style.overflow = '';
-                window.removeEventListener('keydown', onKey);
-            };
-        } else {
-            document.body.style.overflow = '';
-        }
-    }, [modalOpen, close]);
+    const { modalOpen, openModal, closeModal } = useModal();
 
     const scrollTo = (id: string) => {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -172,7 +134,7 @@ function Hero() {
                     </motion.p>
 
                     <motion.div className="hero-actions" variants={fadeIn} custom={4}>
-                        <button className="btn-primary" onClick={open}>
+                        <button className="btn-primary" onClick={openModal}>
                             {t.hero.cta}
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -195,7 +157,7 @@ function Hero() {
 
             <AnimatePresence>
                 {modalOpen && (
-                    <motion.div className="modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} onClick={close}>
+                    <motion.div className="modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} onClick={closeModal}>
                         <motion.div
                             className="modal-card profile-card"
                             initial={{ opacity: 0, scale: 0.92, y: 24 }}
@@ -204,7 +166,7 @@ function Hero() {
                             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <button className="modal-close" onClick={close} aria-label="Close">
+                            <button className="modal-close" onClick={closeModal} aria-label="Close">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M18 6 6 18M6 6l12 12" />
                                 </svg>

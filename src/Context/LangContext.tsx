@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { STORAGE_KEYS } from '@/constants/storage';
 
 type Lang = 'en' | 'ru';
 
@@ -443,14 +444,14 @@ const translations: Record<Lang, Translations> = {
 
 export function LangProvider({ children }: { children: ReactNode }) {
     const [lang, setLang] = useState<Lang>(() => {
-        const saved = localStorage.getItem('portfolio-lang');
+        const saved = localStorage.getItem(STORAGE_KEYS.LANG);
         return saved === 'ru' || saved === 'en' ? saved : 'en';
     });
 
     const toggleLang = useCallback(() => {
         setLang((prev) => {
             const next = prev === 'en' ? 'ru' : 'en';
-            localStorage.setItem('portfolio-lang', next);
+            localStorage.setItem(STORAGE_KEYS.LANG, next);
             return next;
         });
     }, []);

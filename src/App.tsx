@@ -1,5 +1,7 @@
 import { LangProvider } from '@/Context/LangContext';
 import { ThemeProvider } from '@/Context/ThemeContext';
+import { ModalProvider } from '@/Context/ModalContext';
+import ErrorBoundary from '@/components/ErrorBoundary';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Sections/Hero';
 import About from '@/components/Sections/About';
@@ -14,17 +16,21 @@ function App() {
     return (
         <ThemeProvider>
             <LangProvider>
-                <div className="App">
-                    <ParticleCanvas />
-                    <Navbar />
-                    <main>
-                        <Hero />
-                        <About />
-                        <Experience />
-                        <Projects />
-                        <Mentoring />
-                    </main>
-                </div>
+                <ModalProvider>
+                    <ErrorBoundary>
+                        <div className="App">
+                            <ParticleCanvas />
+                            <Navbar />
+                            <main>
+                                <Hero />
+                                <About />
+                                <Experience />
+                                <Projects />
+                                <Mentoring />
+                            </main>
+                        </div>
+                    </ErrorBoundary>
+                </ModalProvider>
             </LangProvider>
         </ThemeProvider>
     );
