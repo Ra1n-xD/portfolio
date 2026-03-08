@@ -9,6 +9,7 @@ import Experience from '@/components/Sections/Experience';
 import Projects from '@/components/Sections/Projects';
 import Mentoring from '@/components/Sections/Mentoring';
 import ParticleCanvas from '@/components/Background/ParticleCanvas';
+import SectionDivider from '@/components/SectionDivider';
 
 import '@/styles/main.css';
 
@@ -23,9 +24,13 @@ function App() {
                             <Navbar />
                             <main>
                                 <Hero />
+                                <SectionDivider variant="glow" />
                                 <About />
+                                <SectionDivider variant="glow" />
                                 <Experience />
+                                <SectionDivider variant="glow" />
                                 <Projects />
+                                <SectionDivider variant="glow" />
                                 <Mentoring />
                             </main>
                         </div>
