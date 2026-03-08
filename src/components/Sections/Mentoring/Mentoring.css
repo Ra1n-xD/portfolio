@@ -1,0 +1,145 @@
+/* ── MENTORING SECTION ── */
+.mentoring-section {
+    background: var(--bg);
+}
+
+.mentoring-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.mentoring-block {
+    padding: 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r3);
+    transition: all var(--t);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.mentoring-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--a), var(--purple));
+    opacity: 0;
+    transition: opacity var(--t);
+}
+.mentoring-block:hover {
+    border-color: var(--border-a);
+    background: var(--card-hov);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+.mentoring-block:hover::before {
+    opacity: 1;
+}
+
+.mentoring-block-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.mentoring-block-title {
+    font-size: 15px;
+    font-family: var(--mono);
+    font-weight: 800;
+    color: var(--a);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.mentoring-block-text {
+    font-size: 15px;
+    color: var(--t2);
+    line-height: 1.75;
+    margin-bottom: 10px;
+}
+.mentoring-block-text:last-of-type {
+    margin-bottom: 0;
+}
+
+.mentoring-help-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.mentoring-help-list li {
+    font-size: 15px;
+    color: var(--t2);
+    line-height: 1.65;
+    padding-left: 14px;
+    position: relative;
+}
+.mentoring-help-list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--a);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.mentoring-disclaimer {
+    font-size: 13px;
+    color: var(--t2);
+    line-height: 1.6;
+    font-style: italic;
+    padding: 10px 14px;
+    background: rgba(56, 182, 255, 0.06);
+    border-left: 2px solid var(--a);
+    border-radius: 0 var(--r1) var(--r1) 0;
+}
+
+/* Pricing */
+.mentoring-prices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.mentoring-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 14px;
+}
+.mentoring-price-name {
+    color: var(--t2);
+    white-space: nowrap;
+}
+.mentoring-price-dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--border);
+    min-width: 20px;
+    margin-bottom: 3px;
+}
+.mentoring-price-value {
+    color: var(--a);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.mentoring-cta-wrap {
+    margin-top: auto;
+    padding-top: 24px;
+}
+.mentoring-cta-btn {
+    width: 100%;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+    .mentoring-grid {
+        grid-template-columns: 1fr;
+    }
+}

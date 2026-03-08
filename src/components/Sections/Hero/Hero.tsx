@@ -1,3 +1,4 @@
+import './Hero.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLang, type Translations } from '@/Context/LangContext';
 import { useModal } from '@/Context/ModalContext';

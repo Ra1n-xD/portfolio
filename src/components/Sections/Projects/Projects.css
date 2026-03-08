@@ -1,0 +1,207 @@
+/* ── PROJECTS ── */
+#projects {
+    background: var(--bg2);
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r3);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--t);
+}
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--a), var(--purple));
+    opacity: 0;
+    transition: opacity var(--t);
+}
+.project-card:hover {
+    border-color: var(--border-a);
+    transform: translateY(-6px);
+    box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.35),
+        var(--a-glow);
+}
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.project-icon {
+    font-size: 26px;
+    flex-shrink: 0;
+}
+.project-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--t3);
+    font-weight: 700;
+    margin-left: auto;
+}
+.project-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--t1);
+    letter-spacing: -0.3px;
+}
+.project-card-period {
+    font-size: 14px;
+    color: var(--t3);
+    font-weight: 500;
+    margin-left: auto;
+    white-space: nowrap;
+}
+.mentoring-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.project-card-desc {
+    font-size: 15px;
+    color: var(--t2);
+    line-height: 1.7;
+    flex: 1;
+}
+.project-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.project-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background: var(--purple-dim);
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    color: #a78bfa;
+    font-family: var(--mono);
+    letter-spacing: 0.06em;
+}
+
+/* ── MENTORING CARD (in projects grid) ── */
+.mentoring-card {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 28px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.mentoring-thumb-wrap {
+    position: relative;
+    border-radius: var(--r2);
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    flex-shrink: 0;
+    background: var(--bg);
+}
+.mentoring-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition:
+        transform 0.4s var(--ease),
+        filter 0.4s var(--ease);
+    filter: brightness(0.85);
+}
+.mentoring-card:hover .mentoring-thumb {
+    transform: scale(1.04);
+    filter: brightness(1);
+}
+
+.mentoring-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.28);
+    transition: background var(--t);
+}
+.mentoring-play svg {
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    padding: 10px;
+    color: #fff;
+    transition:
+        background var(--t),
+        transform var(--t);
+}
+.mentoring-card:hover .mentoring-play {
+    background: rgba(0, 0, 0, 0.1);
+}
+.mentoring-card:hover .mentoring-play svg {
+    background: var(--a);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.mentoring-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+.mentoring-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    width: fit-content;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+.mentoring-badge::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #f87171;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+    .mentoring-card {
+        grid-template-columns: 1fr;
+    }
+    .mentoring-thumb-wrap {
+        aspect-ratio: 16/9;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}

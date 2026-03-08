@@ -1,3 +1,4 @@
+import './Experience.css';
 import { motion } from 'framer-motion';
 import { useLang, type WorkItem } from '@/Context/LangContext';
 import { fadeUp } from '@/constants/animations';

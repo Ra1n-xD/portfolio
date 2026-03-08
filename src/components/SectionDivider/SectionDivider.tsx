@@ -1,3 +1,5 @@
+import './SectionDivider.css';
+
 interface Props {
     variant?: 'wave' | 'glow' | 'dots';
     flip?: boolean;

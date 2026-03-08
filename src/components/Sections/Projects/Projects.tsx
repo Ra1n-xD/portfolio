@@ -1,3 +1,4 @@
+import './Projects.css';
 import { motion } from 'framer-motion';
 import { useLang, type ProjectItem } from '@/Context/LangContext';
 import { fadeUp } from '@/constants/animations';

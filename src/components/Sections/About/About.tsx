@@ -1,3 +1,4 @@
+import './About.css';
 import { motion } from 'framer-motion';
 import { useLang } from '@/Context/LangContext';
 import { fadeUp } from '@/constants/animations';

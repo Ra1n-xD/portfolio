@@ -1,3 +1,4 @@
+import './Navbar.css';
 import { useState, useEffect } from 'react';
 import { useLang } from '@/Context/LangContext';
 import { useTheme } from '@/Context/ThemeContext';

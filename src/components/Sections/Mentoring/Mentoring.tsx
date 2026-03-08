@@ -1,3 +1,4 @@
+import './Mentoring.css';
 import { motion } from 'framer-motion';
 import { useLang } from '@/Context/LangContext';
 import { fadeIn } from '@/constants/animations';

@@ -1,15 +1,15 @@
 import { LangProvider } from '@/Context/LangContext';
 import { ThemeProvider } from '@/Context/ThemeContext';
 import { ModalProvider } from '@/Context/ModalContext';
-import ErrorBoundary from '@/components/ErrorBoundary';
+import ErrorBoundary from '@/components/ErrorBoundary/ErrorBoundary';
 import Navbar from '@/components/Navbar/Navbar';
-import Hero from '@/components/Sections/Hero';
-import About from '@/components/Sections/About';
-import Experience from '@/components/Sections/Experience';
-import Projects from '@/components/Sections/Projects';
-import Mentoring from '@/components/Sections/Mentoring';
+import Hero from '@/components/Sections/Hero/Hero';
+import About from '@/components/Sections/About/About';
+import Experience from '@/components/Sections/Experience/Experience';
+import Projects from '@/components/Sections/Projects/Projects';
+import Mentoring from '@/components/Sections/Mentoring/Mentoring';
 import ParticleCanvas from '@/components/Background/ParticleCanvas';
-import SectionDivider from '@/components/SectionDivider';
+import SectionDivider from '@/components/SectionDivider/SectionDivider';
 
 import '@/styles/main.css';
 

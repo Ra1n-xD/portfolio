@@ -23,7 +23,8 @@
       "Bash(git mv src/context/LangContext.tsx src/Context/LangContext.tsx)",
       "Bash(git mv src/context/ThemeContext.tsx src/Context/ThemeContext.tsx)",
       "Bash(git mv src/hooks/useInView.ts src/Hooks/useInView.ts)",
-      "Bash(npx tsc --noEmit)"
+      "Bash(npx tsc --noEmit)",
+      "Bash(npx vite build)"
     ]
   }
 }
