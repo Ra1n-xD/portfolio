@@ -16,17 +16,24 @@ export function ModalProvider({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         if (modalOpen) {
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
             document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
+            document.documentElement.style.setProperty('--scrollbar-w', `${scrollbarWidth}px`);
             const onKey = (e: KeyboardEvent) => {
                 if (e.key === 'Escape') closeModal();
             };
             window.addEventListener('keydown', onKey);
             return () => {
                 document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
+                document.documentElement.style.setProperty('--scrollbar-w', '0px');
                 window.removeEventListener('keydown', onKey);
             };
         } else {
             document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+            document.documentElement.style.setProperty('--scrollbar-w', '0px');
         }
     }, [modalOpen, closeModal]);
 

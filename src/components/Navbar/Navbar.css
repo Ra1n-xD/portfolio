@@ -2,9 +2,9 @@
 .nav {
     position: fixed;
     top: 12px;
-    left: 50%;
+    left: calc(50% - var(--scrollbar-w) / 2);
     transform: translateX(-50%);
-    width: calc(100% - 48px);
+    width: calc(100% - 48px - var(--scrollbar-w));
     max-width: 1280px;
     height: 52px;
     z-index: 100;

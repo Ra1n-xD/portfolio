@@ -141,8 +141,8 @@ function Hero() {
                                 <path d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
                         </button>
-                        <button className="btn-outline" onClick={() => scrollTo('projects')}>
-                            {t.hero.viewProjects}
+                        <button className="btn-outline" onClick={() => scrollTo('experience')}>
+                            {t.hero.viewExperience}
                         </button>
                         <a href="https://t.me/fronted_engineer" target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                             {ICONS.telegram} Channel

@@ -291,10 +291,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.75);
     padding: 24px;
+    will-change: opacity;
 }
 
 .modal-card {
@@ -305,6 +304,7 @@
     box-shadow:
         0 32px 80px rgba(0, 0, 0, 0.5),
         var(--a-glow);
+    will-change: transform, opacity;
 }
 
 .modal-close {
@@ -359,5 +359,26 @@
     }
     .hero-actions {
         flex-direction: column;
+    }
+    .modal-overlay {
+        padding: 12px;
+        align-items: flex-start;
+        padding-top: 60px;
+    }
+    .modal-card {
+        max-width: 100%;
+    }
+    .modal-card.profile-card {
+        padding: 18px 16px;
+    }
+    .modal-card .profile-avatar {
+        width: 72px;
+        height: 72px;
+    }
+    .modal-card .profile-link-val {
+        font-size: 12px;
+    }
+    .modal-card .profile-tags {
+        margin-top: 14px;
     }
 }

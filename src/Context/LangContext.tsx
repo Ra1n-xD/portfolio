@@ -68,7 +68,7 @@ export interface Translations {
         subtitle: string;
         desc: string;
         cta: string;
-        viewProjects: string;
+        viewExperience: string;
         scroll: string;
     };
     about: {
@@ -144,8 +144,8 @@ const translations: Record<Lang, Translations> = {
             lastName: 'Chervonenko',
             subtitle: 'Fullstack Developer',
             desc: '3+ years building web applications with React, TypeScript, Next.js and NestJS. Passionate about clean code, great UX, and continuous learning.',
-            cta: 'Get in touch',
-            viewProjects: 'View projects',
+            cta: 'Contact me',
+            viewExperience: 'Experience',
             scroll: 'scroll'
         },
         about: {
@@ -304,7 +304,7 @@ const translations: Record<Lang, Translations> = {
             subtitle: 'Fullstack-разработчик',
             desc: '3+ года разработки веб-приложений на React, TypeScript, Next.js и NestJS. Ценю чистый код, отличный UX и непрерывное развитие.',
             cta: 'Связаться',
-            viewProjects: 'Проекты',
+            viewExperience: 'Опыт работы',
             scroll: 'листай'
         },
         about: {
