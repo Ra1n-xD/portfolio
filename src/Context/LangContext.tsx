@@ -25,6 +25,7 @@ export interface WorkItem {
 export interface ProjectItem {
     icon: ReactNode;
     title: string;
+    role: string;
     period: string;
     desc: string;
     tags: string[];
@@ -34,6 +35,7 @@ export interface ProjectItem {
 export interface MentoringProject {
     badge: string | null;
     title: string;
+    role: string;
     period: string;
     desc: string;
     tags: string[];
@@ -85,6 +87,7 @@ export interface Translations {
         firstName: string;
         lastName: string;
         subtitle: string;
+        cardRole: string;
         desc: string;
         cta: string;
         viewExperience: string;
@@ -161,7 +164,8 @@ const translations: Record<Lang, Translations> = {
             name: 'Eduard Chervonenko',
             firstName: 'Eduard',
             lastName: 'Chervonenko',
-            subtitle: 'Fullstack Developer',
+            subtitle: '<Fullstack Developer | TeamLead | Mentor />',
+            cardRole: 'Fullstack Developer · TeamLead · Mentor',
             desc: '3+ years building web applications with React, TypeScript, Next.js and NestJS. Passionate about clean code, great UX, and continuous learning.',
             cta: 'Contact me',
             viewExperience: 'Experience',
@@ -244,6 +248,7 @@ const translations: Record<Lang, Translations> = {
                 {
                     icon: ICONS.messageCircle,
                     title: 'ManipulA',
+                    role: 'TeamLead',
                     period: 'Dec 2025 — Present',
                     desc: 'Telegram bot for a massage salon with booking, scheduling and admin panel. MVP launched in one week with a full team workflow.',
                     tags: ['NestJS', 'React', 'PostgreSQL', 'Docker', 'Telegram Bot API']
@@ -251,6 +256,7 @@ const translations: Record<Lang, Translations> = {
                 {
                     icon: ICONS.dice,
                     title: 'PartyPlay',
+                    role: 'Fullstack Developer',
                     period: 'Feb 2026 — Present',
                     desc: 'Web platform for board games — play with friends online in real time. Built as a fullstack pet project.',
                     tags: ['React', 'TypeScript', 'NestJS', 'WebSocket'],
@@ -260,6 +266,7 @@ const translations: Record<Lang, Translations> = {
             mentoring: {
                 badge: null,
                 title: 'JS Mentoring from Scratch',
+                role: 'Mentor',
                 period: 'Jun 2024 — Present',
                 desc: '6Seniors — mentoring entry-level developers from zero to junior/middle, building a real fullstack project step by step with best practices and live coding.',
                 tags: ['React', 'NestJS', 'TypeScript', 'Live Coding', 'Mentoring']
@@ -320,7 +327,8 @@ const translations: Record<Lang, Translations> = {
             name: 'Эдуард Червоненко',
             firstName: 'Эдуард',
             lastName: 'Червоненко',
-            subtitle: 'Fullstack-разработчик',
+            subtitle: '<Fullstack Developer | TeamLead | Mentor />',
+            cardRole: 'Fullstack Developer · TeamLead · Mentor',
             desc: '3+ года разработки веб-приложений на React, TypeScript, Next.js и NestJS. Ценю чистый код, отличный UX и непрерывное развитие.',
             cta: 'Связаться',
             viewExperience: 'Опыт работы',
@@ -331,7 +339,7 @@ const translations: Record<Lang, Translations> = {
             title: 'Кто я',
             p1: (
                 <>
-                    Я — <strong>Fullstack-разработчик</strong> с 3+ годами опыта создания современных веб-приложений. Мой стек: React, TypeScript, Next.js на фронтенде и NestJS на бэкенде.
+                    Я — <strong>Fullstack Developer</strong> с 3+ годами опыта создания современных веб-приложений. Мой стек: React, TypeScript, Next.js на фронтенде и NestJS на бэкенде.
                 </>
             ),
             p2: <>Начал программировать в 16 лет и не останавливался. С тех пор работал на всех уровнях — от pixel-perfect UI до архитектуры бэкенда и настройки CI/CD.</>,
@@ -366,7 +374,7 @@ const translations: Record<Lang, Translations> = {
             now: 'сейчас',
             work: [
                 {
-                    role: 'Frontend-разработчик',
+                    role: 'Frontend Developer',
                     company: 'Txix',
                     period: 'Фев 2024 — н.в.',
                     current: true,
@@ -378,7 +386,7 @@ const translations: Record<Lang, Translations> = {
                     ]
                 },
                 {
-                    role: 'Fullstack-разработчик',
+                    role: 'Fullstack Developer',
                     company: 'SG-Group',
                     period: 'Янв 2021 — Июл 2021',
                     current: false,
@@ -397,6 +405,7 @@ const translations: Record<Lang, Translations> = {
                 {
                     icon: ICONS.messageCircle,
                     title: 'ManipulA',
+                    role: 'TeamLead',
                     period: 'Дек 2025 — н.в.',
                     desc: 'Telegram-бот для массажного салона с бронированием, расписанием и админ-панелью. MVP запущен за неделю.',
                     tags: ['NestJS', 'React', 'PostgreSQL', 'Docker', 'Telegram Bot API']
@@ -404,6 +413,7 @@ const translations: Record<Lang, Translations> = {
                 {
                     icon: ICONS.dice,
                     title: 'PartyPlay',
+                    role: 'Fullstack Developer',
                     period: 'Фев 2026 — н.в.',
                     desc: 'Веб-платформа для настольных игр — играйте с друзьями онлайн в реальном времени.',
                     tags: ['React', 'TypeScript', 'NestJS', 'WebSocket'],
@@ -413,6 +423,7 @@ const translations: Record<Lang, Translations> = {
             mentoring: {
                 badge: null,
                 title: 'JS менторинг с нуля',
+                role: 'Mentor',
                 period: 'Июн 2024 — н.в.',
                 desc: '6Seniors — менторинг начинающих разработчиков от нуля до junior/middle, пошаговое создание fullstack-проекта с лучшими практиками и live coding.',
                 tags: ['React', 'NestJS', 'TypeScript', 'Live Coding', 'Менторинг']

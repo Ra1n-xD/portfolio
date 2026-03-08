@@ -315,8 +315,18 @@
     margin-bottom: 18px;
     letter-spacing: 0.06em;
 }
-.hero-subtitle .hi {
+.hero-subtitle .tag-bracket {
     color: var(--a);
+    opacity: 0.5;
+    font-weight: 700;
+}
+.hero-subtitle .tag-name {
+    color: var(--a);
+    font-weight: 600;
+}
+.hero-subtitle .tag-sep {
+    color: var(--purple);
+    font-weight: 700;
 }
 
 .hero-desc {

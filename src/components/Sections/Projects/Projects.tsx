@@ -24,6 +24,7 @@ const ProjectCard = ({ project, index }: { project: ProjectItem; index: number }
                 {project.period && <span className="project-card-period">{project.period}</span>}
             </div>
             <div className="project-card-title">{project.title}</div>
+            {project.role && <div className="project-card-role">{project.role}</div>}
             <p className="project-card-desc">{project.desc}</p>
             <div className="project-card-tags">
                 {project.tags.map((tag, i) => (
@@ -99,6 +100,7 @@ function Projects() {
                                 <div className="project-card-title">{t.projectCards.mentoring.title}</div>
                                 {t.projectCards.mentoring.period && <span className="project-card-period">{t.projectCards.mentoring.period}</span>}
                             </div>
+                            {t.projectCards.mentoring.role && <div className="project-card-role">{t.projectCards.mentoring.role}</div>}
                             <p className="project-card-desc">{t.projectCards.mentoring.desc}</p>
                             <div className="project-card-tags">
                                 {t.projectCards.mentoring.tags.map((tag, i) => (

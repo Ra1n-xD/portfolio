@@ -58,7 +58,7 @@ const ProfileCardContent = ({ t }: { t: Translations }) => (
             </div>
             <div className="profile-head-info">
                 <div className="profile-name">{t.hero.name}</div>
-                <div className="profile-role">{t.hero.subtitle}</div>
+                <div className="profile-role">{t.hero.cardRole}</div>
             </div>
         </div>
 
@@ -131,8 +131,13 @@ function Hero() {
                     </motion.h1>
 
                     <motion.p className="hero-subtitle" variants={fadeIn} custom={2}>
-                        <span className="hi">// </span>
-                        {t.hero.subtitle}
+                        <span className="tag-bracket">{'< '}</span>
+                        <span className="tag-name">Fullstack Developer</span>
+                        <span className="tag-sep"> | </span>
+                        <span className="tag-name">TeamLead</span>
+                        <span className="tag-sep"> | </span>
+                        <span className="tag-name">Mentor</span>
+                        <span className="tag-bracket">{' />'}</span>
                     </motion.p>
 
                     <motion.p className="hero-desc" variants={fadeIn} custom={3}>

@@ -106,6 +106,19 @@
     color: var(--t1);
     letter-spacing: -0.3px;
 }
+.project-card-role {
+    align-self: flex-start;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--a);
+    background: var(--a-dim);
+    border: 1px solid color-mix(in srgb, var(--a) 20%, transparent);
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+}
 .project-card-period {
     font-size: 14px;
     color: var(--t1-5);
