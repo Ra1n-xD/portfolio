@@ -8,61 +8,48 @@
 
 /* — glow line — */
 @keyframes glow-slide {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
 }
 @keyframes glow-pulse {
-    0%, 100% { opacity: 0.5; transform: scaleY(1); }
-    50% { opacity: 1; transform: scaleY(2); }
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scaleY(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleY(2);
+    }
 }
 
 .section-divider.glow {
     height: 2px;
     max-width: 900px;
     margin: 0 auto;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        var(--a) 20%,
-        var(--purple) 50%,
-        var(--a) 80%,
-        transparent 100%
-    );
+    background: linear-gradient(90deg, transparent 0%, var(--a) 20%, var(--purple) 50%, var(--a) 80%, transparent 100%);
     background-size: 200% 100%;
     opacity: 0.7;
     animation: glow-slide 4s ease-in-out infinite;
-    mask-image: linear-gradient(
-        90deg,
-        transparent,
-        black 10%,
-        black 90%,
-        transparent
-    );
-    -webkit-mask-image: linear-gradient(
-        90deg,
-        transparent,
-        black 10%,
-        black 90%,
-        transparent
-    );
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
 }
 .section-divider.glow::after {
     content: '';
     position: absolute;
     inset: -14px 5%;
     height: 30px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(56, 182, 255, 0.22) 20%,
-        rgba(99, 102, 241, 0.22) 50%,
-        rgba(56, 182, 255, 0.22) 80%,
-        transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(56, 182, 255, 0.22) 20%, rgba(99, 102, 241, 0.22) 50%, rgba(56, 182, 255, 0.22) 80%, transparent);
     background-size: 200% 100%;
     filter: blur(14px);
     border-radius: 50%;
-    animation: glow-slide 4s ease-in-out infinite, glow-pulse 3s ease-in-out infinite;
+    animation:
+        glow-slide 4s ease-in-out infinite,
+        glow-pulse 3s ease-in-out infinite;
 }
 
 /* — wave — */
@@ -108,11 +95,5 @@
 }
 
 [data-theme='light'] .section-divider.glow::after {
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(0, 120, 212, 0.1) 30%,
-        rgba(80, 72, 229, 0.1) 70%,
-        transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(0, 120, 212, 0.1) 30%, rgba(80, 72, 229, 0.1) 70%, transparent);
 }

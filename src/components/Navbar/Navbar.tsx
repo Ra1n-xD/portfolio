@@ -119,7 +119,13 @@ function Navbar() {
                         {link.label}
                     </button>
                 ))}
-                <button className="nav-cta" onClick={() => { setMobileOpen(false); openModal(); }}>
+                <button
+                    className="nav-cta"
+                    onClick={() => {
+                        setMobileOpen(false);
+                        openModal();
+                    }}
+                >
                     {t.nav.contact}
                 </button>
             </div>

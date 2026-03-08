@@ -19,7 +19,9 @@ export default function SectionDivider({ variant = 'glow', flip }: Props) {
     if (variant === 'dots') {
         return (
             <div className="section-divider dots" aria-hidden="true">
-                <span /><span /><span />
+                <span />
+                <span />
+                <span />
             </div>
         );
     }
