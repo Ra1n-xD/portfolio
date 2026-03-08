@@ -8,7 +8,11 @@
       "Bash(mv src/components/hooks/useInView.js src/hooks/useInView.ts)",
       "Bash(rmdir src/components/hooks)",
       "Bash(npm install)",
-      "Bash(npx prettier --write \"src/**/*.{ts,tsx,css}\")"
+      "Bash(npx prettier --write \"src/**/*.{ts,tsx,css}\")",
+      "Bash(mv context context_tmp)",
+      "Bash(mv context_tmp Context)",
+      "Bash(mv hooks hooks_tmp)",
+      "Bash(mv hooks_tmp Hooks)"
     ]
   }
 }

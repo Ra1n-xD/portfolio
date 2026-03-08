@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../Context/ThemeContext';
 
 const PARTICLE_COUNT = 220;
 const CONNECTION_DIST = 160;

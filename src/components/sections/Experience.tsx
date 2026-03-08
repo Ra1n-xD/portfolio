@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { useInView } from '../../hooks/useInView';
-import { useLang, type WorkItem } from '../../context/LangContext';
+import { useInView } from '../../Hooks/useInView';
+import { useLang, type WorkItem } from '../../Context/LangContext';
 
 const fadeUp = {
     hidden: { opacity: 0, y: 40 },

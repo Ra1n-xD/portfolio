@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLang, type Translations } from '../../context/LangContext';
-import myPhoto from '../../img/me.png';
+import { useLang, type Translations } from '../../Context/LangContext';
+import myPhoto from '../../assets/me.png';
 
 const fadeIn = {
     hidden: { opacity: 0, y: 24 },

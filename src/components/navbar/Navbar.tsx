@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useLang } from '../../context/LangContext';
-import { useTheme } from '../../context/ThemeContext';
-import { openContactModal } from '../sections/Hero';
-import logo from '../../img/fronted-logo.jpg';
+import { useLang } from '../../Context/LangContext';
+import { useTheme } from '../../Context/ThemeContext';
+import { openContactModal } from '../Sections/Hero';
+import logo from '../../assets/fronted-logo.png';
 
 const NAV_IDS = ['about', 'experience', 'projects', 'mentoring'];
 
@@ -111,18 +111,16 @@ function Navbar() {
                 </div>
             </nav>
 
-            {mobileOpen && (
-                <div className="nav-mobile">
-                    {navLinks.map((link) => (
-                        <button key={link.id} className={`nav-list__link${active === link.id ? ' active' : ''}`} onClick={() => scrollTo(link.id)}>
-                            {link.label}
-                        </button>
-                    ))}
-                    <button className="nav-cta" onClick={() => scrollTo('home')}>
-                        {t.nav.contact}
+            <div className={`nav-mobile${mobileOpen ? ' open' : ''}`}>
+                {navLinks.map((link) => (
+                    <button key={link.id} className={`nav-list__link${active === link.id ? ' active' : ''}`} onClick={() => scrollTo(link.id)}>
+                        {link.label}
                     </button>
-                </div>
-            )}
+                ))}
+                <button className="nav-cta" onClick={() => { setMobileOpen(false); openContactModal(); }}>
+                    {t.nav.contact}
+                </button>
+            </div>
         </>
     );
 }

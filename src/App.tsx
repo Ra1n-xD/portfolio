@@ -1,12 +1,12 @@
-import { LangProvider } from './context/LangContext';
-import { ThemeProvider } from './context/ThemeContext';
-import Navbar from './components/navbar/Navbar';
-import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Experience from './components/sections/Experience';
-import Projects from './components/sections/Projects';
-import Mentoring from './components/sections/Mentoring';
-import ParticleCanvas from './components/background/ParticleCanvas';
+import { LangProvider } from './Context/LangContext';
+import { ThemeProvider } from './Context/ThemeContext';
+import Navbar from './components/Navbar/Navbar';
+import Hero from './components/Sections/Hero';
+import About from './components/Sections/About';
+import Experience from './components/Sections/Experience';
+import Projects from './components/Sections/Projects';
+import Mentoring from './components/Sections/Mentoring';
+import ParticleCanvas from './components/Background/ParticleCanvas';
 
 import './styles/main.css';
 
