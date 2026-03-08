@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useLang } from '../../Context/LangContext';
-import { useTheme } from '../../Context/ThemeContext';
-import { openContactModal } from '../Sections/Hero';
-import logo from '../../assets/fronted-logo.png';
+import { useLang } from '@/Context/LangContext';
+import { useTheme } from '@/Context/ThemeContext';
+import { openContactModal } from '@/components/Sections/Hero';
+import logo from '@/assets/fronted-logo.png';
 
 const NAV_IDS = ['about', 'experience', 'projects', 'mentoring'];
 

@@ -1,14 +1,14 @@
-import { LangProvider } from './Context/LangContext';
-import { ThemeProvider } from './Context/ThemeContext';
-import Navbar from './components/Navbar/Navbar';
-import Hero from './components/Sections/Hero';
-import About from './components/Sections/About';
-import Experience from './components/Sections/Experience';
-import Projects from './components/Sections/Projects';
-import Mentoring from './components/Sections/Mentoring';
-import ParticleCanvas from './components/Background/ParticleCanvas';
+import { LangProvider } from '@/Context/LangContext';
+import { ThemeProvider } from '@/Context/ThemeContext';
+import Navbar from '@/components/Navbar/Navbar';
+import Hero from '@/components/Sections/Hero';
+import About from '@/components/Sections/About';
+import Experience from '@/components/Sections/Experience';
+import Projects from '@/components/Sections/Projects';
+import Mentoring from '@/components/Sections/Mentoring';
+import ParticleCanvas from '@/components/Background/ParticleCanvas';
 
-import './styles/main.css';
+import '@/styles/main.css';
 
 function App() {
     return (

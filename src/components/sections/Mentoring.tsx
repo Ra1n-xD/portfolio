@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useLang } from '../../Context/LangContext';
+import { useLang } from '@/Context/LangContext';
 
 const fadeIn = {
     hidden: { opacity: 0, y: 24 },
