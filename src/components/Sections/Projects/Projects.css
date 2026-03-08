@@ -66,7 +66,7 @@
 }
 .project-card-period {
     font-size: 14px;
-    color: var(--t3);
+    color: var(--t1-5);
     font-weight: 500;
     margin-left: auto;
     white-space: nowrap;
@@ -78,7 +78,7 @@
 }
 .project-card-desc {
     font-size: 15px;
-    color: var(--t2);
+    color: var(--t1-5);
     line-height: 1.7;
     flex: 1;
 }

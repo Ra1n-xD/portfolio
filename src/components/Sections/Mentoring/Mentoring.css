@@ -57,7 +57,7 @@
 
 .mentoring-block-text {
     font-size: 15px;
-    color: var(--t2);
+    color: var(--t1-5);
     line-height: 1.75;
     margin-bottom: 10px;
 }
@@ -73,7 +73,7 @@
 }
 .mentoring-help-list li {
     font-size: 15px;
-    color: var(--t2);
+    color: var(--t1-5);
     line-height: 1.65;
     padding-left: 14px;
     position: relative;
@@ -89,7 +89,7 @@
 
 .mentoring-disclaimer {
     font-size: 13px;
-    color: var(--t2);
+    color: var(--t1-5);
     line-height: 1.6;
     font-style: italic;
     padding: 10px 14px;
@@ -112,7 +112,7 @@
     font-size: 14px;
 }
 .mentoring-price-name {
-    color: var(--t2);
+    color: var(--t1-5);
     white-space: nowrap;
 }
 .mentoring-price-dots {
