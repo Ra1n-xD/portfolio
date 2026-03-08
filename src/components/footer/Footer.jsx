@@ -1,31 +1,28 @@
-import vk from '../../img/icons/vk.svg';
-import tg from '../../img/icons/tg.svg';
-import gh from '../../img/icons/gitHub.svg';
+import { useLang } from '../../context/LangContext';
 
 function Footer() {
+    const { t } = useLang();
+
     return (
         <footer className="footer">
             <div className="container">
-                <div className="footer__wrapper">
-                    <ul className="social">
-                        <li className="social__item">
-                            <a href="https://t.me/Ra1n_XD" target="_blank">
-                                <img src={tg} alt="Link" />
-                            </a>
-                        </li>
-                        <li className="social__item">
-                            <a href="https://github.com/Ra1n-xD/y-practicum" target="_blank">
-                                <img src={gh} alt="Link" />
-                            </a>
-                        </li>
-                        <li className="social__item">
-                            <a href="https://vk.com/ra1n_xd" target="_blank">
-                                <img src={vk} alt="Link" />
-                            </a>
-                        </li>
-                    </ul>
-                    <div className="copyright">
-                        <p>© {new Date().getFullYear()} Chervonenko Eduard</p>
+                <div className="footer-inner">
+                    <span className="footer-copy">
+                        &copy; {new Date().getFullYear()} {t.footer.copy}
+                    </span>
+                    <div className="footer-links">
+                        <a href="https://github.com/Ra1n-xD" target="_blank" rel="noopener noreferrer" className="footer-link">
+                            GitHub
+                        </a>
+                        <a href="https://t.me/ra1n_xd" target="_blank" rel="noopener noreferrer" className="footer-link">
+                            Telegram
+                        </a>
+                        <a href="https://t.me/fronted_engineer" target="_blank" rel="noopener noreferrer" className="footer-link">
+                            TG Channel
+                        </a>
+                        <a href="https://www.linkedin.com/in/chervonenko-ed" target="_blank" rel="noopener noreferrer" className="footer-link">
+                            LinkedIn
+                        </a>
                     </div>
                 </div>
             </div>

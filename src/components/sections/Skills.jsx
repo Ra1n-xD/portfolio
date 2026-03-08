@@ -1,0 +1,56 @@
+import { motion } from 'framer-motion';
+import { useInView } from '../hooks/useInView';
+import { useLang } from '../../context/LangContext';
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i = 0) => ({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, delay: i * 0.08, ease: [0.4, 0, 0.2, 1] },
+    }),
+};
+
+function Skills() {
+    const [ref, inView] = useInView({ threshold: 0.1 });
+    const { t } = useLang();
+
+    return (
+        <section className="section" id="skills" ref={ref}>
+            <div className="container">
+                <motion.div
+                    initial="hidden"
+                    animate={inView ? 'visible' : 'hidden'}
+                >
+                    <motion.span className="section-label" variants={fadeUp} custom={0}>
+                        {t.skills.label}
+                    </motion.span>
+                    <motion.h2 className="section-title" variants={fadeUp} custom={1}>
+                        {t.skills.title}
+                    </motion.h2>
+
+                    <div className="skills-grid">
+                        {t.skills.groups.map((group, i) => (
+                            <motion.div
+                                key={group.title}
+                                className="skill-group"
+                                variants={fadeUp}
+                                custom={2 + i * 0.5}
+                            >
+                                <span className="skill-group-icon">{group.icon}</span>
+                                <div className="skill-group-title">{group.title}</div>
+                                <div className="skill-tags">
+                                    {group.tags.map((tag) => (
+                                        <span key={tag} className="skill-tag">{tag}</span>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+            </div>
+        </section>
+    );
+}
+
+export default Skills;
