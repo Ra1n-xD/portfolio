@@ -47,6 +47,7 @@
     height: 6px;
     border-radius: 50%;
     background: var(--a);
+    animation: pulse 2s ease-in-out infinite;
 }
 
 .timeline-card {
@@ -59,6 +60,7 @@
 .timeline-card:hover {
     border-color: var(--border-a);
     box-shadow: 0 4px 24px rgba(0, 255, 136, 0.06);
+    transform: translateX(6px);
 }
 
 .timeline-header {
@@ -126,6 +128,10 @@
     color: var(--a);
     font-size: 16px;
     line-height: 1.5;
+    transition: transform 0.2s var(--ease);
+}
+.timeline-card:hover .timeline-list li::before {
+    transform: translateX(3px);
 }
 
 /* ── RESPONSIVE ── */

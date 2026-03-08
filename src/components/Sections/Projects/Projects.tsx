@@ -1,4 +1,5 @@
 import './Projects.css';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useLang, type ProjectItem } from '@/Context/LangContext';
 import { fadeUp } from '@/constants/animations';
@@ -6,6 +7,14 @@ import { fadeUp } from '@/constants/animations';
 const YT_VIDEO_ID = 'W2y0QlShyd0';
 const YT_URL = `https://www.youtube.com/live/${YT_VIDEO_ID}?si=vIflkj8zBXXuKTfH`;
 const YT_THUMB = `https://img.youtube.com/vi/${YT_VIDEO_ID}/maxresdefault.jpg`;
+
+const handleGlassMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}%`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
+};
 
 const ProjectCard = ({ project, index }: { project: ProjectItem; index: number }) => {
     const content = (
@@ -32,7 +41,8 @@ const ProjectCard = ({ project, index }: { project: ProjectItem; index: number }
         initial: 'hidden' as const,
         whileInView: 'visible' as const,
         viewport: { once: true },
-        custom: index * 0.5
+        custom: index * 0.5,
+        onMouseMove: handleGlassMove
     };
 
     if (project.link) {

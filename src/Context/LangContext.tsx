@@ -9,7 +9,7 @@ interface Stat {
 }
 
 interface SkillGroup {
-    icon: string;
+    icon: ReactNode;
     title: string;
     tags: string[];
 }
@@ -23,7 +23,7 @@ export interface WorkItem {
 }
 
 export interface ProjectItem {
-    icon: string;
+    icon: ReactNode;
     title: string;
     period: string;
     desc: string;
@@ -45,11 +45,30 @@ interface PriceItem {
 }
 
 interface ContactItem {
-    icon: string;
+    icon: ReactNode;
     label: string;
     value: string;
     href: string;
 }
+
+/* ── SVG Icons ── */
+const svgProps = { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
+
+const ICONS = {
+    zap: <svg {...svgProps}><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" /></svg>,
+    palette: <svg {...svgProps}><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>,
+    server: <svg {...svgProps}><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="6" cy="18" r="1" fill="currentColor" stroke="none"/></svg>,
+    database: <svg {...svgProps}><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>,
+    rocket: <svg {...svgProps}><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>,
+    wrench: <svg {...svgProps}><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>,
+    messageCircle: <svg {...svgProps}><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>,
+    dice: <svg {...svgProps}><rect x="2" y="2" width="20" height="20" rx="3"/><circle cx="8" cy="8" r="1.5" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.5" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>,
+    mail: <svg {...svgProps}><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>,
+    send: <svg {...svgProps}><path d="m22 2-7 20-4-9-9-4z"/><path d="m22 2-11 11"/></svg>,
+    megaphone: <svg {...svgProps}><path d="m3 11 18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>,
+    briefcase: <svg {...svgProps}><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3"/></svg>,
+    gitBranch: <svg {...svgProps}><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>,
+};
 
 export interface Translations {
     nav: {
@@ -180,12 +199,12 @@ const translations: Record<Lang, Translations> = {
             label: 'Tech Stack',
             title: 'Skills & Technologies',
             groups: [
-                { icon: '\u26A1', title: 'Languages', tags: ['JavaScript', 'TypeScript', 'Python', 'PHP', 'Go'] },
-                { icon: '\uD83C\uDFA8', title: 'Frontend', tags: ['React', 'Next.js', 'Vue.js', 'Redux / RTK', 'Zustand', 'SCSS', 'Ant Design', 'MUI'] },
-                { icon: '\uD83D\uDEE0\uFE0F', title: 'Backend', tags: ['NestJS', 'FastAPI', 'Node.js', 'REST API', 'GraphQL'] },
-                { icon: '\uD83D\uDDC4\uFE0F', title: 'Databases', tags: ['PostgreSQL', 'MySQL', 'MongoDB'] },
-                { icon: '\uD83D\uDE80', title: 'DevOps', tags: ['Docker', 'GitLab CI/CD', 'Linux', 'VPS / VDS'] },
-                { icon: '\uD83D\uDD27', title: 'Tools', tags: ['Git', 'ESLint', 'Prettier', 'Vite', 'Webpack', 'Figma'] }
+                { icon: ICONS.zap, title: 'Languages', tags: ['JavaScript', 'TypeScript', 'Python', 'PHP', 'Go'] },
+                { icon: ICONS.palette, title: 'Frontend', tags: ['React', 'Next.js', 'Vue.js', 'Redux / RTK', 'Zustand', 'SCSS', 'Ant Design', 'MUI'] },
+                { icon: ICONS.server, title: 'Backend', tags: ['NestJS', 'FastAPI', 'Node.js', 'REST API', 'GraphQL'] },
+                { icon: ICONS.database, title: 'Databases', tags: ['PostgreSQL', 'MySQL', 'MongoDB'] },
+                { icon: ICONS.rocket, title: 'DevOps', tags: ['Docker', 'GitLab CI/CD', 'Linux', 'VPS / VDS'] },
+                { icon: ICONS.wrench, title: 'Tools', tags: ['Git', 'ESLint', 'Prettier', 'Vite', 'Webpack', 'Figma'] }
             ]
         },
         experience: {
@@ -223,14 +242,14 @@ const translations: Record<Lang, Translations> = {
             title: 'Projects',
             items: [
                 {
-                    icon: '\uD83D\uDCAC',
+                    icon: ICONS.messageCircle,
                     title: 'ManipulA',
                     period: 'Dec 2025 — Present',
                     desc: 'Telegram bot for a massage salon with booking, scheduling and admin panel. MVP launched in one week with a full team workflow.',
                     tags: ['NestJS', 'React', 'PostgreSQL', 'Docker', 'Telegram Bot API']
                 },
                 {
-                    icon: '\uD83C\uDFB2',
+                    icon: ICONS.dice,
                     title: 'PartyPlay',
                     period: 'Feb 2026 — Present',
                     desc: 'Web platform for board games — play with friends online in real time. Built as a fullstack pet project.',
@@ -276,11 +295,11 @@ const translations: Record<Lang, Translations> = {
             title: "Let's work together",
             desc: "Open to new opportunities, freelance projects, and interesting collaborations. Don't hesitate to reach out — I usually respond within 24 hours.",
             items: [
-                { icon: '\u2709\uFE0F', label: 'Email', value: 'ed.chervonenko@gmail.com', href: 'mailto:ed.chervonenko@gmail.com' },
-                { icon: '\u2708\uFE0F', label: 'Telegram', value: '@ra1n_xd', href: 'https://t.me/ra1n_xd' },
-                { icon: '\uD83D\uDCE2', label: 'Telegram Channel', value: '@fronted_engineer', href: 'https://t.me/fronted_engineer' },
-                { icon: '\uD83D\uDCBC', label: 'LinkedIn', value: 'linkedin.com/in/chervonenko-ed', href: 'https://www.linkedin.com/in/chervonenko-ed' },
-                { icon: '\uD83D\uDC19', label: 'GitHub', value: 'github.com/Ra1n-xD', href: 'https://github.com/Ra1n-xD' }
+                { icon: ICONS.mail, label: 'Email', value: 'ed.chervonenko@gmail.com', href: 'mailto:ed.chervonenko@gmail.com' },
+                { icon: ICONS.send, label: 'Telegram', value: '@ra1n_xd', href: 'https://t.me/ra1n_xd' },
+                { icon: ICONS.megaphone, label: 'Telegram Channel', value: '@fronted_engineer', href: 'https://t.me/fronted_engineer' },
+                { icon: ICONS.briefcase, label: 'LinkedIn', value: 'linkedin.com/in/chervonenko-ed', href: 'https://www.linkedin.com/in/chervonenko-ed' },
+                { icon: ICONS.gitBranch, label: 'GitHub', value: 'github.com/Ra1n-xD', href: 'https://github.com/Ra1n-xD' }
             ]
         },
         footer: {
@@ -333,12 +352,12 @@ const translations: Record<Lang, Translations> = {
             label: 'Стек',
             title: 'Навыки и технологии',
             groups: [
-                { icon: '\u26A1', title: 'Языки', tags: ['JavaScript', 'TypeScript', 'Python', 'PHP', 'Go'] },
-                { icon: '\uD83C\uDFA8', title: 'Фронтенд', tags: ['React', 'Next.js', 'Vue.js', 'Redux / RTK', 'Zustand', 'SCSS', 'Ant Design', 'MUI'] },
-                { icon: '\uD83D\uDEE0\uFE0F', title: 'Бэкенд', tags: ['NestJS', 'FastAPI', 'Node.js', 'REST API', 'GraphQL'] },
-                { icon: '\uD83D\uDDC4\uFE0F', title: 'Базы данных', tags: ['PostgreSQL', 'MySQL', 'MongoDB'] },
-                { icon: '\uD83D\uDE80', title: 'DevOps', tags: ['Docker', 'GitLab CI/CD', 'Linux', 'VPS / VDS'] },
-                { icon: '\uD83D\uDD27', title: 'Инструменты', tags: ['Git', 'ESLint', 'Prettier', 'Vite', 'Webpack', 'Figma'] }
+                { icon: ICONS.zap, title: 'Языки', tags: ['JavaScript', 'TypeScript', 'Python', 'PHP', 'Go'] },
+                { icon: ICONS.palette, title: 'Фронтенд', tags: ['React', 'Next.js', 'Vue.js', 'Redux / RTK', 'Zustand', 'SCSS', 'Ant Design', 'MUI'] },
+                { icon: ICONS.server, title: 'Бэкенд', tags: ['NestJS', 'FastAPI', 'Node.js', 'REST API', 'GraphQL'] },
+                { icon: ICONS.database, title: 'Базы данных', tags: ['PostgreSQL', 'MySQL', 'MongoDB'] },
+                { icon: ICONS.rocket, title: 'DevOps', tags: ['Docker', 'GitLab CI/CD', 'Linux', 'VPS / VDS'] },
+                { icon: ICONS.wrench, title: 'Инструменты', tags: ['Git', 'ESLint', 'Prettier', 'Vite', 'Webpack', 'Figma'] }
             ]
         },
         experience: {
@@ -376,14 +395,14 @@ const translations: Record<Lang, Translations> = {
             title: 'Проекты',
             items: [
                 {
-                    icon: '\uD83D\uDCAC',
+                    icon: ICONS.messageCircle,
                     title: 'ManipulA',
                     period: 'Дек 2025 — н.в.',
                     desc: 'Telegram-бот для массажного салона с бронированием, расписанием и админ-панелью. MVP запущен за неделю.',
                     tags: ['NestJS', 'React', 'PostgreSQL', 'Docker', 'Telegram Bot API']
                 },
                 {
-                    icon: '\uD83C\uDFB2',
+                    icon: ICONS.dice,
                     title: 'PartyPlay',
                     period: 'Фев 2026 — н.в.',
                     desc: 'Веб-платформа для настольных игр — играйте с друзьями онлайн в реальном времени.',
@@ -429,11 +448,11 @@ const translations: Record<Lang, Translations> = {
             title: 'Давайте работать вместе',
             desc: 'Открыт к новым возможностям, фрилансу и интересным коллаборациям. Пишите — обычно отвечаю в течение 24 часов.',
             items: [
-                { icon: '\u2709\uFE0F', label: 'Email', value: 'ed.chervonenko@gmail.com', href: 'mailto:ed.chervonenko@gmail.com' },
-                { icon: '\u2708\uFE0F', label: 'Telegram', value: '@ra1n_xd', href: 'https://t.me/ra1n_xd' },
-                { icon: '\uD83D\uDCE2', label: 'Telegram-канал', value: '@fronted_engineer', href: 'https://t.me/fronted_engineer' },
-                { icon: '\uD83D\uDCBC', label: 'LinkedIn', value: 'linkedin.com/in/chervonenko-ed', href: 'https://www.linkedin.com/in/chervonenko-ed' },
-                { icon: '\uD83D\uDC19', label: 'GitHub', value: 'github.com/Ra1n-xD', href: 'https://github.com/Ra1n-xD' }
+                { icon: ICONS.mail, label: 'Email', value: 'ed.chervonenko@gmail.com', href: 'mailto:ed.chervonenko@gmail.com' },
+                { icon: ICONS.send, label: 'Telegram', value: '@ra1n_xd', href: 'https://t.me/ra1n_xd' },
+                { icon: ICONS.megaphone, label: 'Telegram-канал', value: '@fronted_engineer', href: 'https://t.me/fronted_engineer' },
+                { icon: ICONS.briefcase, label: 'LinkedIn', value: 'linkedin.com/in/chervonenko-ed', href: 'https://www.linkedin.com/in/chervonenko-ed' },
+                { icon: ICONS.gitBranch, label: 'GitHub', value: 'github.com/Ra1n-xD', href: 'https://github.com/Ra1n-xD' }
             ]
         },
         footer: {

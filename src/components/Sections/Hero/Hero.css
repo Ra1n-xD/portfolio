@@ -21,6 +21,7 @@
     background: radial-gradient(circle, rgba(0, 255, 136, 0.07) 0%, transparent 70%);
     top: -140px;
     right: -60px;
+    animation: glowFloat1 8s ease-in-out infinite;
 }
 .hero-glow-2 {
     width: 420px;
@@ -28,6 +29,15 @@
     background: radial-gradient(circle, rgba(139, 92, 246, 0.09) 0%, transparent 70%);
     bottom: -100px;
     left: -100px;
+    animation: glowFloat2 10s ease-in-out infinite;
+}
+@keyframes glowFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-30px, 20px) scale(1.15); }
+}
+@keyframes glowFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(20px, -25px) scale(1.1); }
 }
 
 .hero .container {
@@ -53,21 +63,73 @@
     overflow: hidden;
     transition:
         border-color var(--t),
-        box-shadow var(--t);
+        box-shadow var(--t),
+        transform var(--t);
 }
-.profile-card::before {
+
+/* animated border trace */
+.profile-card::before,
+.profile-card::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--a), transparent);
-    opacity: 0.5;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    pointer-events: none;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
 }
+.profile-card::before {
+    background: conic-gradient(
+        from var(--card-angle, 0deg),
+        transparent 0%,
+        var(--a) 8%,
+        var(--purple) 16%,
+        transparent 28%
+    );
+    opacity: 0.7;
+    animation: cardTrace 5s linear infinite;
+}
+.profile-card::after {
+    background: conic-gradient(
+        from var(--card-angle-2, 180deg),
+        transparent 0%,
+        var(--purple) 8%,
+        var(--a) 16%,
+        transparent 28%
+    );
+    opacity: 0.4;
+    animation: cardTrace2 5s linear infinite;
+}
+
+@property --card-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+@property --card-angle-2 {
+    syntax: '<angle>';
+    initial-value: 180deg;
+    inherits: false;
+}
+@keyframes cardTrace {
+    to { --card-angle: 360deg; }
+}
+@keyframes cardTrace2 {
+    to { --card-angle-2: 540deg; }
+}
+
 .profile-card:hover {
-    border-color: var(--border-a);
     box-shadow: var(--a-glow);
+    transform: translateY(-4px);
+}
+.profile-card:hover::before {
+    opacity: 1;
+}
+.profile-card:hover::after {
+    opacity: 0.7;
 }
 
 .profile-avatar {
@@ -80,6 +142,15 @@
         var(--a-glow);
     overflow: hidden;
     flex-shrink: 0;
+    animation: avatarPulse 4s ease-in-out infinite;
+    transition: transform var(--t);
+}
+.profile-avatar:hover {
+    transform: scale(1.08);
+}
+@keyframes avatarPulse {
+    0%, 100% { box-shadow: 0 0 0 4px var(--a-dim), 0 0 32px rgba(56, 182, 255, 0.22); }
+    50% { box-shadow: 0 0 0 6px var(--a-dim), 0 0 48px rgba(56, 182, 255, 0.35); }
 }
 .profile-avatar img {
     width: 100%;
@@ -134,10 +205,11 @@
     font-family: var(--mono);
     font-size: 13px;
     text-decoration: none;
-    transition: opacity var(--t);
+    transition: opacity var(--t), transform var(--t);
 }
 .profile-link:hover {
     opacity: 0.75;
+    transform: translateX(4px);
 }
 .profile-link-key {
     display: inline-flex;
@@ -224,6 +296,16 @@
     font-weight: 300;
     color: var(--a);
     letter-spacing: -0.5px;
+    background: linear-gradient(90deg, var(--a), var(--purple), var(--a));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmerText 4s linear infinite;
+}
+@keyframes shimmerText {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
 }
 
 .hero-subtitle {

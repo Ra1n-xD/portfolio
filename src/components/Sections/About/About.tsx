@@ -1,7 +1,16 @@
 import './About.css';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useLang } from '@/Context/LangContext';
 import { fadeUp } from '@/constants/animations';
+
+const handleGlassMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}%`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
+};
 
 function About() {
     const { t } = useLang();
@@ -47,7 +56,7 @@ function About() {
                         <div className="macos-body">
                             <div className="skills-grid">
                                 {t.skills.groups.map((group, i) => (
-                                    <motion.div key={i} className="skill-group" variants={fadeUp} custom={6}>
+                                    <motion.div key={i} className="skill-group" variants={fadeUp} custom={6} onMouseMove={handleGlassMove}>
                                         <span className="skill-group-icon">{group.icon}</span>
                                         <div className="skill-group-title">{group.title}</div>
                                         <div className="skill-tags">

@@ -18,7 +18,8 @@
     gap: 12px;
     position: relative;
     overflow: hidden;
-    transition: all var(--t);
+    transition: all 0.4s var(--ease);
+    backdrop-filter: blur(8px);
 }
 .project-card::before {
     content: '';
@@ -27,18 +28,57 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--a), var(--purple));
+    background: linear-gradient(90deg, var(--a), var(--purple), var(--a));
+    background-size: 200% 100%;
     opacity: 0;
     transition: opacity var(--t);
+    z-index: 1;
+}
+.project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(56, 182, 255, 0.1),
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+    pointer-events: none;
+    z-index: 0;
+}
+.project-card:hover::before {
+    animation: borderSlide 2s linear infinite;
+}
+@keyframes borderSlide {
+    0% { background-position: -100% 0; }
+    100% { background-position: 100% 0; }
 }
 .project-card:hover {
     border-color: var(--border-a);
     transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
     box-shadow:
         0 14px 40px rgba(0, 0, 0, 0.35),
-        var(--a-glow);
+        var(--a-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+}
+[data-theme='light'] .project-card:hover {
+    background: rgba(255, 255, 255, 0.45);
+    box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.06),
+        var(--a-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.2);
 }
 .project-card:hover::before {
+    opacity: 1;
+}
+.project-card:hover::after {
     opacity: 1;
 }
 
@@ -48,8 +88,10 @@
     gap: 12px;
 }
 .project-icon {
-    font-size: 26px;
+    display: flex;
+    align-items: center;
     flex-shrink: 0;
+    color: var(--a);
 }
 .project-num {
     font-family: var(--mono);
@@ -97,6 +139,12 @@
     color: #a78bfa;
     font-family: var(--mono);
     letter-spacing: 0.06em;
+    transition: all var(--t);
+}
+.project-tag:hover {
+    transform: translateY(-2px);
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
 }
 
 /* ── MENTORING CARD (in projects grid) ── */
@@ -158,7 +206,8 @@
 .mentoring-card:hover .mentoring-play svg {
     background: var(--a);
     color: #fff;
-    transform: scale(1.1);
+    transform: scale(1.15);
+    box-shadow: 0 0 24px rgba(56, 182, 255, 0.4);
 }
 
 .mentoring-info {

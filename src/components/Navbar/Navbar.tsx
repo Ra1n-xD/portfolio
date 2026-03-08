@@ -1,5 +1,5 @@
 import './Navbar.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useLang } from '@/Context/LangContext';
 import { useTheme } from '@/Context/ThemeContext';
 import { useModal } from '@/Context/ModalContext';
@@ -14,6 +14,8 @@ function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [active, setActive] = useState('');
     const [mobileOpen, setMobileOpen] = useState(false);
+    const listRef = useRef<HTMLUListElement>(null);
+    const [pill, setPill] = useState({ left: 0, width: 0, opacity: 0 });
 
     const navLinks = [
         { label: t.nav.about, id: 'about' },
@@ -21,6 +23,27 @@ function Navbar() {
         { label: t.nav.projects, id: 'projects' },
         { label: t.nav.mentoring, id: 'mentoring' }
     ];
+
+    const updatePill = useCallback(() => {
+        if (!listRef.current || !active) {
+            setPill((p) => ({ ...p, opacity: 0 }));
+            return;
+        }
+        const activeBtn = listRef.current.querySelector(`.nav-list__link.active`) as HTMLElement | null;
+        if (activeBtn) {
+            const listRect = listRef.current.getBoundingClientRect();
+            const btnRect = activeBtn.getBoundingClientRect();
+            setPill({
+                left: btnRect.left - listRect.left,
+                width: btnRect.width,
+                opacity: 1
+            });
+        }
+    }, [active]);
+
+    useEffect(() => {
+        updatePill();
+    }, [active, updatePill, lang]);
 
     useEffect(() => {
         const onScroll = () => {
@@ -59,9 +82,18 @@ function Navbar() {
                         </span>
                     </span>
 
-                    <ul className="nav-list">
-                        {navLinks.map((link) => (
-                            <li key={link.id}>
+                    <ul className="nav-list" ref={listRef}>
+                        <li
+                            className="nav-pill"
+                            style={{
+                                transform: `translateX(${pill.left}px)`,
+                                width: pill.width,
+                                opacity: pill.opacity
+                            }}
+                            aria-hidden
+                        />
+                        {navLinks.map((link, i) => (
+                            <li key={link.id} style={{ animationDelay: `${i * 60}ms` }} className="nav-list__item">
                                 <button className={`nav-list__link${active === link.id ? ' active' : ''}`} onClick={() => scrollTo(link.id)}>
                                     {link.label}
                                 </button>

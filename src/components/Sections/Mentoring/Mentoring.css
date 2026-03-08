@@ -27,9 +27,17 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--a), var(--purple));
+    background: linear-gradient(90deg, var(--a), var(--purple), var(--a));
+    background-size: 200% 100%;
     opacity: 0;
     transition: opacity var(--t);
+}
+.mentoring-block:hover::before {
+    animation: borderSlide 2s linear infinite;
+}
+@keyframes borderSlide {
+    0% { background-position: -100% 0; }
+    100% { background-position: 100% 0; }
 }
 .mentoring-block:hover {
     border-color: var(--border-a);
@@ -42,8 +50,10 @@
 }
 
 .mentoring-block-icon {
-    font-size: 24px;
+    display: flex;
+    align-items: center;
     margin-bottom: 10px;
+    color: var(--a);
 }
 .mentoring-block-title {
     font-size: 15px;
@@ -125,6 +135,10 @@
     color: var(--a);
     font-weight: 700;
     white-space: nowrap;
+    transition: transform 0.2s var(--ease);
+}
+.mentoring-price-row:hover .mentoring-price-value {
+    transform: scale(1.08);
 }
 
 .mentoring-cta-wrap {
