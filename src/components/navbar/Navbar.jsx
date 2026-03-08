@@ -16,20 +16,21 @@ function Navbar() {
         { label: t.nav.projects, id: 'projects' },
     ];
 
+    const NAV_IDS = ['about', 'skills', 'experience', 'projects'];
+
     useEffect(() => {
         const onScroll = () => {
             setScrolled(window.scrollY > 20);
-            const sections = navLinks.map((l) => document.getElementById(l.id));
             let current = '';
-            sections.forEach((sec) => {
-                if (!sec) return;
-                if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+            NAV_IDS.forEach((id) => {
+                const sec = document.getElementById(id);
+                if (sec && window.scrollY >= sec.offsetTop - 120) current = id;
             });
             setActive(current);
         };
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
-    });
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -45,8 +46,18 @@ function Navbar() {
         <>
             <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
                 <div className="container">
-                    <span className="nav-logo" onClick={() => scrollTo('home')} style={{ cursor: 'pointer' }}>
-                        ed.<span>dev</span>
+                    <span className="nav-logo" onClick={() => scrollTo('home')}>
+                        <svg className="nav-logo-icon" width="22" height="22" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 14C18 14 18 66 18 66L48 66C62 66 68 58 68 50C68 42 62 36 52 36C60 36 64 30 64 24C64 18 58 14 48 14Z" fill="url(#nlg)"/>
+                            <rect x="28" y="34" width="20" height="8" rx="2" fill="white" opacity="0.7"/>
+                            <defs>
+                                <linearGradient id="nlg" x1="18" y1="14" x2="68" y2="66" gradientUnits="userSpaceOnUse">
+                                    <stop stopColor="#38b6ff"/>
+                                    <stop offset="1" stopColor="#6366f1"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        Front<span className="a">Ed</span>
                     </span>
 
                     <ul className="nav-list">

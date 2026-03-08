@@ -108,6 +108,12 @@ const translations = {
                 { icon: '\uD83D\uDCE7', title: 'Multi-Channel Comms', desc: 'Frontend for a communication service supporting Email, SMS, Push, social networks and messengers with unified campaign management.', tags: ['React', 'TypeScript', 'Ant Design', 'Redux RTK'] },
                 { icon: '\uD83D\uDDF3\uFE0F', title: 'e-Voting Service', desc: 'Meeting and electronic voting management system replacing paper-based workflows, built for an enterprise client.', tags: ['React', 'TypeScript', 'NestJS', 'REST API'] },
             ],
+            mentoring: {
+                badge: null,
+                title: 'JS Mentoring from Scratch',
+                desc: 'Stream recording where I build a real fullstack project step by step, share best practices and answer questions from the community.',
+                tags: ['React', 'NestJS', 'TypeScript', 'Live Coding', 'Mentoring'],
+            },
         },
         contact: {
             label: 'Contact',
@@ -230,6 +236,12 @@ const translations = {
                 { icon: '\uD83D\uDCE7', title: 'Мультиканальные коммуникации', desc: 'Фронтенд сервиса коммуникаций: Email, SMS, Push, соцсети, мессенджеры — единый интерфейс управления рассылками.', tags: ['React', 'TypeScript', 'Ant Design', 'Redux RTK'] },
                 { icon: '\uD83D\uDDF3\uFE0F', title: 'Сервис голосования', desc: 'Система управления совещаниями и электронным голосованием, заменившая бумажный документооборот.', tags: ['React', 'TypeScript', 'NestJS', 'REST API'] },
             ],
+            mentoring: {
+                badge: null,
+                title: 'JS менторинг с нуля',
+                desc: 'Запись стрима, на котором я строю реальный fullstack-проект пошагово, делюсь практиками и отвечаю на вопросы сообщества.',
+                tags: ['React', 'NestJS', 'TypeScript', 'Live Coding', 'Менторинг'],
+            },
         },
         contact: {
             label: 'Контакты',

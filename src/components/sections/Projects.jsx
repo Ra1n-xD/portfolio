@@ -10,6 +10,10 @@ const fadeUp = {
     }),
 };
 
+const YT_VIDEO_ID = 'W2y0QlShyd0';
+const YT_URL = `https://www.youtube.com/live/${YT_VIDEO_ID}?si=vIflkj8zBXXuKTfH`;
+const YT_THUMB = `https://img.youtube.com/vi/${YT_VIDEO_ID}/maxresdefault.jpg`;
+
 function Projects() {
     const { t } = useLang();
 
@@ -60,6 +64,45 @@ function Projects() {
                             </div>
                         </motion.div>
                     ))}
+
+                    {/* Mentoring card — full width */}
+                    <motion.a
+                        href={YT_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-card mentoring-card"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        custom={t.projectCards.items.length * 0.5}
+                    >
+                        <div className="mentoring-thumb-wrap">
+                            <img
+                                src={YT_THUMB}
+                                alt={t.projectCards.mentoring.title}
+                                className="mentoring-thumb"
+                                loading="lazy"
+                            />
+                            <div className="mentoring-play">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div className="mentoring-info">
+                            {t.projectCards.mentoring.badge && (
+                                <div className="mentoring-badge">{t.projectCards.mentoring.badge}</div>
+                            )}
+                            <div className="project-card-title">{t.projectCards.mentoring.title}</div>
+                            <p className="project-card-desc">{t.projectCards.mentoring.desc}</p>
+                            <div className="project-card-tags">
+                                {t.projectCards.mentoring.tags.map((tag) => (
+                                    <span key={tag} className="project-tag">{tag}</span>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.a>
                 </div>
             </div>
         </section>
