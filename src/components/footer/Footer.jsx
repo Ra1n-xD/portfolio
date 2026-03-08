@@ -23,6 +23,9 @@ function Footer() {
                         <a href="https://www.linkedin.com/in/chervonenko-ed" target="_blank" rel="noopener noreferrer" className="footer-link">
                             LinkedIn
                         </a>
+                        <a href="https://drive.google.com/drive/folders/1KZ_eu9n9IdUYwfX7PUSVSgQC4hz5nBMp" target="_blank" rel="noopener noreferrer" className="footer-link">
+                            CV
+                        </a>
                     </div>
                 </div>
             </div>

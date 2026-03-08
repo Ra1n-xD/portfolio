@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLang } from '../../context/LangContext';
 import { useTheme } from '../../context/ThemeContext';
 import { openContactModal } from '../sections/Hero';
+import logo from '../../img/fronted-logo.jpg';
 
 function Navbar() {
     const { t, lang, toggleLang } = useLang();
@@ -12,13 +13,12 @@ function Navbar() {
 
     const navLinks = [
         { label: t.nav.about, id: 'about' },
-        { label: t.nav.skills, id: 'skills' },
         { label: t.nav.experience, id: 'experience' },
         { label: t.nav.projects, id: 'projects' },
         { label: t.nav.mentoring, id: 'mentoring' },
     ];
 
-    const NAV_IDS = ['about', 'skills', 'experience', 'projects', 'mentoring'];
+    const NAV_IDS = ['about', 'experience', 'projects', 'mentoring'];
 
     useEffect(() => {
         const onScroll = () => {
@@ -49,17 +49,7 @@ function Navbar() {
             <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
                 <div className="container">
                     <span className="nav-logo" onClick={() => scrollTo('home')}>
-                        <svg className="nav-logo-icon" width="22" height="22" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18 14C18 14 18 66 18 66L48 66C62 66 68 58 68 50C68 42 62 36 52 36C60 36 64 30 64 24C64 18 58 14 48 14Z" fill="url(#nlg)"/>
-                            <rect x="28" y="34" width="20" height="8" rx="2" fill="white" opacity="0.7"/>
-                            <defs>
-                                <linearGradient id="nlg" x1="18" y1="14" x2="68" y2="66" gradientUnits="userSpaceOnUse">
-                                    <stop stopColor="#38b6ff"/>
-                                    <stop offset="1" stopColor="#6366f1"/>
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                        Front<span className="a">Ed</span>
+                        <img className="nav-logo-icon" src={logo} alt="FrontEd" width="22" height="22" /><span>Front<span className="a">Ed</span></span>
                     </span>
 
                     <ul className="nav-list">

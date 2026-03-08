@@ -12,7 +12,7 @@ const fadeUp = {
 };
 
 function About() {
-    const [ref, inView] = useInView({ threshold: 0.15 });
+    const [ref, inView] = useInView({ threshold: 0.1 });
     const { t } = useLang();
 
     return (
@@ -50,6 +50,39 @@ function About() {
                             ))}
                         </motion.div>
                     </div>
+
+                    {/* Skills */}
+                    <motion.div className="macos-window about-skills" variants={fadeUp} custom={5}>
+                        <div className="macos-titlebar">
+                            <div className="macos-dots">
+                                <span className="macos-dot macos-dot-red" />
+                                <span className="macos-dot macos-dot-yellow" />
+                                <span className="macos-dot macos-dot-green" />
+                            </div>
+                            <div className="macos-title">~/ed/skills</div>
+                            <div className="macos-titlebar-right" />
+                        </div>
+                        <div className="macos-body">
+                            <div className="skills-grid">
+                                {t.skills.groups.map((group, i) => (
+                                    <motion.div
+                                        key={group.title}
+                                        className="skill-group"
+                                        variants={fadeUp}
+                                        custom={6 + i * 0.5}
+                                    >
+                                        <span className="skill-group-icon">{group.icon}</span>
+                                        <div className="skill-group-title">{group.title}</div>
+                                        <div className="skill-tags">
+                                            {group.tags.map((tag) => (
+                                                <span key={tag} className="skill-tag">{tag}</span>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>
