@@ -4,7 +4,9 @@
 
 ## 🧑‍💻 About Me
 
-Fullstack developer with 3+ years of experience building web applications. I value clean code, great UX, and continuous growth.
+Fullstack developer with over 3 years of experience building web applications using React, TypeScript, Next.js,
+and NestJS. Some experience in team leadership, CI/CD setup, and DevOps processes. Passionate about
+continuous learning and adopting best practices.
 
 ## 🛠 Tech Stack
 
