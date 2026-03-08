@@ -12,7 +12,17 @@
       "Bash(mv context context_tmp)",
       "Bash(mv context_tmp Context)",
       "Bash(mv hooks hooks_tmp)",
-      "Bash(mv hooks_tmp Hooks)"
+      "Bash(mv hooks_tmp Hooks)",
+      "Bash(git mv src/components/background/ParticleCanvas.tsx src/components/Background/ParticleCanvas.tsx)",
+      "Bash(git mv src/components/navbar/Navbar.tsx src/components/Navbar/Navbar.tsx)",
+      "Bash(git mv src/components/sections/About.tsx src/components/Sections/About.tsx)",
+      "Bash(git mv src/components/sections/Experience.tsx src/components/Sections/Experience.tsx)",
+      "Bash(git mv src/components/sections/Hero.tsx src/components/Sections/Hero.tsx)",
+      "Bash(git mv src/components/sections/Mentoring.tsx src/components/Sections/Mentoring.tsx)",
+      "Bash(git mv src/components/sections/Projects.tsx src/components/Sections/Projects.tsx)",
+      "Bash(git mv src/context/LangContext.tsx src/Context/LangContext.tsx)",
+      "Bash(git mv src/context/ThemeContext.tsx src/Context/ThemeContext.tsx)",
+      "Bash(git mv src/hooks/useInView.ts src/Hooks/useInView.ts)"
     ]
   }
 }
