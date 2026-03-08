@@ -26,8 +26,8 @@ const TimelineCard = ({ item, index, nowLabel }: TimelineCardProps) => (
             </div>
             <div className="timeline-company">{item.company}</div>
             <ul className="timeline-list">
-                {item.bullets.map((b) => (
-                    <li key={b.slice(0, 40)}>{b}</li>
+                {item.bullets.map((b, i) => (
+                    <li key={i}>{b}</li>
                 ))}
             </ul>
         </div>
@@ -48,8 +48,8 @@ function Experience() {
                 </motion.h2>
 
                 <div className="timeline">
-                    {t.experience.work.map((item) => (
-                        <TimelineCard key={item.company} item={item} index={2} nowLabel={t.experience.now} />
+                    {t.experience.work.map((item, i) => (
+                        <TimelineCard key={i} item={item} index={2} nowLabel={t.experience.now} />
                     ))}
                 </div>
             </div>

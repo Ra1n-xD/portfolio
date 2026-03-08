@@ -25,8 +25,8 @@ function About() {
                         </motion.div>
 
                         <motion.div className="about-stats" variants={fadeUp} custom={3}>
-                            {t.about.stats.map((stat) => (
-                                <motion.div key={stat.label} className="stat-card" variants={fadeUp} custom={4}>
+                            {t.about.stats.map((stat, i) => (
+                                <motion.div key={i} className="stat-card" variants={fadeUp} custom={4}>
                                     <div className="stat-number">{stat.number}</div>
                                     <div className="stat-label">{stat.label}</div>
                                 </motion.div>
@@ -46,8 +46,8 @@ function About() {
                         </div>
                         <div className="macos-body">
                             <div className="skills-grid">
-                                {t.skills.groups.map((group) => (
-                                    <motion.div key={group.title} className="skill-group" variants={fadeUp} custom={6}>
+                                {t.skills.groups.map((group, i) => (
+                                    <motion.div key={i} className="skill-group" variants={fadeUp} custom={6}>
                                         <span className="skill-group-icon">{group.icon}</span>
                                         <div className="skill-group-title">{group.title}</div>
                                         <div className="skill-tags">

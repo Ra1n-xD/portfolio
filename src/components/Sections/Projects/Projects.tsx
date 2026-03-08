@@ -17,8 +17,8 @@ const ProjectCard = ({ project, index }: { project: ProjectItem; index: number }
             <div className="project-card-title">{project.title}</div>
             <p className="project-card-desc">{project.desc}</p>
             <div className="project-card-tags">
-                {project.tags.map((tag) => (
-                    <span key={tag} className="project-tag">
+                {project.tags.map((tag, i) => (
+                    <span key={i} className="project-tag">
                         {tag}
                     </span>
                 ))}
@@ -61,7 +61,7 @@ function Projects() {
 
                 <div className="projects-grid">
                     {t.projectCards.items.map((project, i) => (
-                        <ProjectCard key={project.title} project={project} index={i} />
+                        <ProjectCard key={i} project={project} index={i} />
                     ))}
 
                     <motion.a
@@ -91,8 +91,8 @@ function Projects() {
                             </div>
                             <p className="project-card-desc">{t.projectCards.mentoring.desc}</p>
                             <div className="project-card-tags">
-                                {t.projectCards.mentoring.tags.map((tag) => (
-                                    <span key={tag} className="project-tag">
+                                {t.projectCards.mentoring.tags.map((tag, i) => (
+                                    <span key={i} className="project-tag">
                                         {tag}
                                     </span>
                                 ))}

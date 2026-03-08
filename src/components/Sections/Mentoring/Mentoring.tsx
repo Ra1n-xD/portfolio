@@ -34,8 +34,8 @@ function Mentoring() {
                             <div className="mentoring-block-icon">💸</div>
                             <div className="mentoring-block-title">{m.priceTitle}</div>
                             <div className="mentoring-prices">
-                                {m.prices.map((p) => (
-                                    <div key={p.name} className="mentoring-price-row">
+                                {m.prices.map((p, i) => (
+                                    <div key={i} className="mentoring-price-row">
                                         <span className="mentoring-price-name">{p.name}</span>
                                         <span className="mentoring-price-dots" />
                                         <span className="mentoring-price-value">{p.value}</span>
