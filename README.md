@@ -8,10 +8,12 @@ Fullstack developer with 3+ years of experience building web applications. I val
 
 ## 🛠 Tech Stack
 
-**Frontend:** React, Next.js, TypeScript, Redux Toolkit, Zustand, Framer Motion, HTML, CSS
-**Backend:** NestJS, Node.js, Express, REST API
-**Database:** PostgreSQL, MongoDB, Prisma, TypeORM
-**Deploy:** Vercel, GitHub Pages, Docker, CI/CD (GitHub Actions)
+- **Languages:** JavaScript, TypeScript, Python, PHP, Go
+- **Frontend:** React, Next.js, Vue.js, Redux/RTK, Zustand, SCSS, Ant Design, MUI
+- **Backend:** NestJS, FastAPI, Node.js, REST API, GraphQL
+- **Databases:** PostgreSQL, MySQL, MongoDB
+- **DevOps:** Docker, GitLab CI/CD, Linux, VPS/VDS
+- **Tools:** Git, ESLint, Prettier, Vite, Webpack, Figma
 
 ## 📬 Contact
 
