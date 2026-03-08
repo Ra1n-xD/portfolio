@@ -1,38 +1,24 @@
-# Eduard Chervonenko — Portfolio
+# Eduard Chervonenko — Fullstack Developer
 
-Personal portfolio website built with React, TypeScript, and Vite.
+Personal portfolio website showcasing my experience, projects, and mentoring services.
 
 **Live:** [ra1n-xd.github.io/portfolio](https://ra1n-xd.github.io/portfolio/)
 
+## About Me
+
+Fullstack developer with 3+ years of experience building web applications with React, TypeScript, Next.js, and NestJS. I value clean code, great UX, and continuous growth.
+
 ## Tech Stack
 
-- React 18 + TypeScript
-- Vite
-- Framer Motion
-- CSS (custom design system)
+React 18 | TypeScript | Vite | Framer Motion | CSS
 
 ## Features
 
-- Dark / Light theme
-- EN / RU language toggle
-- Responsive design
-- Particle canvas background
+- Dark / Light theme toggle
+- EN / RU language switch
+- Fully responsive
+- Animated particle background
 - Smooth scroll navigation
-
-## Project Structure
-
-```
-src/
-  assets/           # Images
-  components/
-    Background/     # Particle canvas
-    Navbar/         # Navigation bar
-    Sections/       # Page sections (Hero, About, Experience, Projects, Mentoring)
-  Context/          # Theme & Language providers
-  Hooks/            # Custom hooks
-  styles/           # CSS
-  types/            # TypeScript declarations
-```
 
 ## Getting Started
 
@@ -52,60 +38,4 @@ npm run deploy
 - Telegram: [@ra1n_xd](https://t.me/Ra1n_XD)
 - Email: ed.chervonenko@gmail.com
 - GitHub: [Ra1n-xD](https://github.com/Ra1n-xD)
-
----
-
-# Эдуард Червоненко — Портфолио
-
-Персональный сайт-портфолио на React, TypeScript и Vite.
-
-**Демо:** [ra1n-xd.github.io/portfolio](https://ra1n-xd.github.io/portfolio/)
-
-## Стек
-
-- React 18 + TypeScript
-- Vite
-- Framer Motion
-- CSS (кастомная дизайн-система)
-
-## Возможности
-
-- Тёмная / Светлая тема
-- Переключение EN / RU
-- Адаптивный дизайн
-- Анимированный canvas-фон
-- Плавная навигация
-
-## Структура проекта
-
-```
-src/
-  assets/           # Изображения
-  components/
-    Background/     # Canvas с частицами
-    Navbar/         # Навигация
-    Sections/       # Секции (Hero, About, Experience, Projects, Mentoring)
-  Context/          # Провайдеры темы и языка
-  Hooks/            # Кастомные хуки
-  styles/           # Стили
-  types/            # TypeScript-декларации
-```
-
-## Запуск
-
-```bash
-npm install
-npm run dev
-```
-
-## Деплой
-
-```bash
-npm run deploy
-```
-
-## Контакты
-
-- Telegram: [@ra1n_xd](https://t.me/Ra1n_XD)
-- Email: ed.chervonenko@gmail.com
-- GitHub: [Ra1n-xD](https://github.com/Ra1n-xD)
+- LinkedIn: [chervonenko-ed](https://linkedin.com/in/chervonenko-ed)
