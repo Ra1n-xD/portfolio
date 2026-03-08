@@ -29,24 +29,37 @@ function Skills() {
                         {t.skills.title}
                     </motion.h2>
 
-                    <div className="skills-grid">
-                        {t.skills.groups.map((group, i) => (
-                            <motion.div
-                                key={group.title}
-                                className="skill-group"
-                                variants={fadeUp}
-                                custom={2 + i * 0.5}
-                            >
-                                <span className="skill-group-icon">{group.icon}</span>
-                                <div className="skill-group-title">{group.title}</div>
-                                <div className="skill-tags">
-                                    {group.tags.map((tag) => (
-                                        <span key={tag} className="skill-tag">{tag}</span>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                    <motion.div className="macos-window" variants={fadeUp} custom={2}>
+                        <div className="macos-titlebar">
+                            <div className="macos-dots">
+                                <span className="macos-dot macos-dot-red" />
+                                <span className="macos-dot macos-dot-yellow" />
+                                <span className="macos-dot macos-dot-green" />
+                            </div>
+                            <div className="macos-title">~/ed/skills</div>
+                            <div className="macos-titlebar-right" />
+                        </div>
+                        <div className="macos-body">
+                            <div className="skills-grid">
+                                {t.skills.groups.map((group, i) => (
+                                    <motion.div
+                                        key={group.title}
+                                        className="skill-group"
+                                        variants={fadeUp}
+                                        custom={3 + i * 0.5}
+                                    >
+                                        <span className="skill-group-icon">{group.icon}</span>
+                                        <div className="skill-group-title">{group.title}</div>
+                                        <div className="skill-tags">
+                                            {group.tags.map((tag) => (
+                                                <span key={tag} className="skill-tag">{tag}</span>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

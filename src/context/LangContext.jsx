@@ -6,13 +6,17 @@ const translations = {
     en: {
         nav: {
             about: 'About',
-            skills: 'Skills',
-            experience: 'Experience',
-            projects: 'Projects',
+            skills: 'Tech Stack',
+            experience: 'Career',
+            projects: 'Portfolio',
+            mentoring: 'Mentoring',
             contact: 'Contact me',
         },
         hero: {
             badge: 'Available for work',
+            name: 'Eduard Chervonenko',
+            firstName: 'Eduard',
+            lastName: 'Chervonenko',
             subtitle: 'Fullstack Developer',
             desc: '3+ years building web applications with React, TypeScript, Next.js and NestJS. Passionate about clean code, great UX, and continuous learning.',
             cta: 'Get in touch',
@@ -47,7 +51,6 @@ const translations = {
         experience: {
             label: 'Career',
             workTitle: 'Work Experience',
-            projectsTitle: 'Projects',
             now: 'now',
             work: [
                 {
@@ -74,46 +77,46 @@ const translations = {
                     ],
                 },
             ],
-            projects: [
-                {
-                    role: 'Team Lead / Fullstack Developer',
-                    company: 'ManipulA',
-                    period: 'Dec 2025 — Present',
-                    current: true,
-                    bullets: [
-                        'Assembled a development team, established processes (task allocation, code review) — launched MVP Telegram bot for a massage salon in one week.',
-                        'Designed architecture, set up CI/CD with Telegram notifications, Docker containerization and log monitoring — reduced release times and accelerated error resolution.',
-                        'Implemented Conventional Commits, Semantic Versioning and wrote comprehensive project documentation.',
-                    ],
-                },
-                {
-                    role: 'Mentor / Fullstack Developer',
-                    company: '6Seniors',
-                    period: 'Jun 2024 — Present',
-                    current: true,
-                    bullets: [
-                        'Mentored entry-level developers from zero experience to junior/middle level, created a project knowledge base.',
-                        'Developed a student attendance monitoring dashboard for mentors to track progress visually.',
-                        'Improved the backend and refactored the platform codebase, enhancing stability, visual design, and UX.',
-                    ],
-                },
-            ],
         },
         projectCards: {
             label: 'Portfolio',
-            title: 'Featured Projects',
+            title: 'Projects',
             items: [
-                { icon: '\uD83D\uDCAC', title: 'ManipulA', desc: 'Telegram bot for a massage salon with booking, scheduling and admin panel. MVP launched in one week with a full team workflow.', tags: ['NestJS', 'React', 'PostgreSQL', 'Docker', 'Telegram Bot API'] },
-                { icon: '\uD83D\uDCCA', title: '6Seniors Platform', desc: 'Educational platform with student attendance monitoring dashboard. Mentored developers from zero to junior/middle level.', tags: ['React', 'TypeScript', 'NestJS', 'PostgreSQL'] },
-                { icon: '\uD83D\uDCE7', title: 'Multi-Channel Comms', desc: 'Frontend for a communication service supporting Email, SMS, Push, social networks and messengers with unified campaign management.', tags: ['React', 'TypeScript', 'Ant Design', 'Redux RTK'] },
-                { icon: '\uD83D\uDDF3\uFE0F', title: 'e-Voting Service', desc: 'Meeting and electronic voting management system replacing paper-based workflows, built for an enterprise client.', tags: ['React', 'TypeScript', 'NestJS', 'REST API'] },
+                { icon: '\uD83D\uDCAC', title: 'ManipulA', period: 'Dec 2025 — Present', desc: 'Telegram bot for a massage salon with booking, scheduling and admin panel. MVP launched in one week with a full team workflow.', tags: ['NestJS', 'React', 'PostgreSQL', 'Docker', 'Telegram Bot API'] },
+                { icon: '\uD83C\uDFB2', title: 'PartyPlay', period: 'Feb 2026 — Present', desc: 'Web platform for board games — play with friends online in real time. Built as a fullstack pet project.', tags: ['React', 'TypeScript', 'NestJS', 'WebSocket'], link: 'https://partyplay.duckdns.org:8444/' },
             ],
             mentoring: {
                 badge: null,
                 title: 'JS Mentoring from Scratch',
-                desc: 'Stream recording where I build a real fullstack project step by step, share best practices and answer questions from the community.',
+                period: 'Jun 2024 — Present',
+                desc: '6Seniors — mentoring entry-level developers from zero to junior/middle, building a real fullstack project step by step with best practices and live coding.',
                 tags: ['React', 'NestJS', 'TypeScript', 'Live Coding', 'Mentoring'],
             },
+        },
+        mentoring: {
+            label: 'Mentoring',
+            title: 'Mentoring',
+            about: "I'm a frontend/fullstack developer and I prepare beginners in this field. I've been working professionally since 2021. I hold an honors bachelor's degree in Computer Science and Information Technology.",
+            aboutExtra: "I've been mentoring since summer 2024 in an educational project and individually. Several people have already been hired since then.",
+            helpTitle: 'What I help with',
+            helpItems: [
+                'Fundamental JavaScript learning',
+                'React and its ecosystem',
+                'Code review',
+                'Interview preparation',
+                'Resume building',
+                'Connecting with HRs who reach out to me (when possible)',
+                'Other real-life questions (real work cases, procrastination, etc.)',
+            ],
+            disclaimer: "I do mentoring — helping you learn. I can't promise 100% employment like sketchy courses, especially now when the market is oversaturated with juniors.",
+            priceTitle: 'Pricing',
+            prices: [
+                { name: 'Quick basic questions', value: 'Free' },
+                { name: 'Intro call', value: 'Free' },
+                { name: 'Group mentoring', value: '750 ₽/hr' },
+                { name: '1-on-1 sessions', value: '1500 ₽/hr' },
+            ],
+            cta: 'Book a session',
         },
         contact: {
             label: 'Contact',
@@ -134,13 +137,17 @@ const translations = {
     ru: {
         nav: {
             about: 'Обо мне',
-            skills: 'Навыки',
-            experience: 'Опыт',
-            projects: 'Проекты',
+            skills: 'Стек',
+            experience: 'Карьера',
+            projects: 'Портфолио',
+            mentoring: 'Менторинг',
             contact: 'Связаться',
         },
         hero: {
             badge: 'Открыт к работе',
+            name: 'Эдуард Червоненко',
+            firstName: 'Эдуард',
+            lastName: 'Червоненко',
             subtitle: 'Fullstack-разработчик',
             desc: '3+ года разработки веб-приложений на React, TypeScript, Next.js и NestJS. Ценю чистый код, отличный UX и непрерывное развитие.',
             cta: 'Связаться',
@@ -175,7 +182,6 @@ const translations = {
         experience: {
             label: 'Карьера',
             workTitle: 'Опыт работы',
-            projectsTitle: 'Проекты',
             now: 'сейчас',
             work: [
                 {
@@ -202,46 +208,46 @@ const translations = {
                     ],
                 },
             ],
-            projects: [
-                {
-                    role: 'Тимлид / Fullstack-разработчик',
-                    company: 'ManipulA',
-                    period: 'Дек 2025 — н.в.',
-                    current: true,
-                    bullets: [
-                        'Сформировал команду, выстроил процессы (распределение задач, код-ревью) — запуск MVP Telegram-бота для массажного салона за неделю.',
-                        'Спроектировал архитектуру, настроил CI/CD с уведомлениями в Telegram, Docker-контейнеризацию и мониторинг логов.',
-                        'Внедрил Conventional Commits, Semantic Versioning и написал документацию проекта.',
-                    ],
-                },
-                {
-                    role: 'Ментор / Fullstack-разработчик',
-                    company: '6Seniors',
-                    period: 'Июн 2024 — н.в.',
-                    current: true,
-                    bullets: [
-                        'Менторинг начинающих разработчиков от нуля до junior/middle, создание базы знаний проекта.',
-                        'Разработка дашборда мониторинга посещаемости студентов для менторов.',
-                        'Улучшение бэкенда и рефакторинг платформы — повышение стабильности, дизайна и UX.',
-                    ],
-                },
-            ],
         },
         projectCards: {
             label: 'Портфолио',
-            title: 'Избранные проекты',
+            title: 'Проекты',
             items: [
-                { icon: '\uD83D\uDCAC', title: 'ManipulA', desc: 'Telegram-бот для массажного салона с бронированием, расписанием и админ-панелью. MVP запущен за неделю.', tags: ['NestJS', 'React', 'PostgreSQL', 'Docker', 'Telegram Bot API'] },
-                { icon: '\uD83D\uDCCA', title: '6Seniors Platform', desc: 'Образовательная платформа с дашбордом посещаемости. Менторинг разработчиков от нуля до junior/middle.', tags: ['React', 'TypeScript', 'NestJS', 'PostgreSQL'] },
-                { icon: '\uD83D\uDCE7', title: 'Мультиканальные коммуникации', desc: 'Фронтенд сервиса коммуникаций: Email, SMS, Push, соцсети, мессенджеры — единый интерфейс управления рассылками.', tags: ['React', 'TypeScript', 'Ant Design', 'Redux RTK'] },
-                { icon: '\uD83D\uDDF3\uFE0F', title: 'Сервис голосования', desc: 'Система управления совещаниями и электронным голосованием, заменившая бумажный документооборот.', tags: ['React', 'TypeScript', 'NestJS', 'REST API'] },
+                { icon: '\uD83D\uDCAC', title: 'ManipulA', period: 'Дек 2025 — н.в.', desc: 'Telegram-бот для массажного салона с бронированием, расписанием и админ-панелью. MVP запущен за неделю.', tags: ['NestJS', 'React', 'PostgreSQL', 'Docker', 'Telegram Bot API'] },
+                { icon: '\uD83C\uDFB2', title: 'PartyPlay', period: 'Фев 2026 — н.в.', desc: 'Веб-платформа для настольных игр — играйте с друзьями онлайн в реальном времени.', tags: ['React', 'TypeScript', 'NestJS', 'WebSocket'], link: 'https://partyplay.duckdns.org:8444/' },
             ],
             mentoring: {
                 badge: null,
                 title: 'JS менторинг с нуля',
-                desc: 'Запись стрима, на котором я строю реальный fullstack-проект пошагово, делюсь практиками и отвечаю на вопросы сообщества.',
+                period: 'Июн 2024 — н.в.',
+                desc: '6Seniors — менторинг начинающих разработчиков от нуля до junior/middle, пошаговое создание fullstack-проекта с лучшими практиками и live coding.',
                 tags: ['React', 'NestJS', 'TypeScript', 'Live Coding', 'Менторинг'],
             },
+        },
+        mentoring: {
+            label: 'Менторинг',
+            title: 'Менторинг',
+            about: 'Работаю frontend/fullstack разработчиком и занимаюсь подготовкой начинающих в данной сфере. Профессионально работаю с 2021 года. Имею красный диплом бакалавра по направлению «Фундаментальная информатика и информационные технологии».',
+            aboutExtra: 'Менторингом занимаюсь с лета 2024 года в одном образовательном проекте и индивидуально. С этого момента уже несколько человек трудоустроились.',
+            helpTitle: 'С чем помогаю',
+            helpItems: [
+                'Фундаментальное изучение JS',
+                'Изучение React и его инфраструктуры',
+                'Ревью кода',
+                'Подготовка к собесам',
+                'Составление резюме',
+                'Связываю с HR, которые пишут мне с предложением о работе (по возможности)',
+                'Прочие жизненные вопросы (реальные рабочие кейсы, проблемы с прокрастинацией и т.д.)',
+            ],
+            disclaimer: 'Я занимаюсь именно менторингом, то есть помощью с обучением. Обещать 100% трудоустройство как на «говно-курсах» я не могу, особенно сейчас, когда рынок перенасыщен джунами.',
+            priceTitle: 'Стоимость',
+            prices: [
+                { name: 'Быстрые и базовые вопросы', value: 'Бесплатно' },
+                { name: 'Ознакомительный созвон', value: 'Бесплатно' },
+                { name: 'Групповой менторинг', value: '750 ₽/час' },
+                { name: 'Встречи 1 на 1', value: '1500 ₽/час' },
+            ],
+            cta: 'Записаться',
         },
         contact: {
             label: 'Контакты',

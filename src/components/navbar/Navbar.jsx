@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLang } from '../../context/LangContext';
 import { useTheme } from '../../context/ThemeContext';
+import { openContactModal } from '../sections/Hero';
 
 function Navbar() {
     const { t, lang, toggleLang } = useLang();
@@ -14,9 +15,10 @@ function Navbar() {
         { label: t.nav.skills, id: 'skills' },
         { label: t.nav.experience, id: 'experience' },
         { label: t.nav.projects, id: 'projects' },
+        { label: t.nav.mentoring, id: 'mentoring' },
     ];
 
-    const NAV_IDS = ['about', 'skills', 'experience', 'projects'];
+    const NAV_IDS = ['about', 'skills', 'experience', 'projects', 'mentoring'];
 
     useEffect(() => {
         const onScroll = () => {
@@ -98,7 +100,7 @@ function Navbar() {
                             )}
                         </button>
 
-                        <button className="nav-cta" onClick={() => scrollTo('contact')}>
+                        <button className="nav-cta" onClick={() => { setMobileOpen(false); openContactModal(); }}>
                             {t.nav.contact}
                         </button>
 
@@ -126,7 +128,7 @@ function Navbar() {
                             {link.label}
                         </button>
                     ))}
-                    <button className="nav-cta" onClick={() => scrollTo('contact')}>
+                    <button className="nav-cta" onClick={() => scrollTo('home')}>
                         {t.nav.contact}
                     </button>
                 </div>

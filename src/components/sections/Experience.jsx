@@ -46,7 +46,6 @@ function TimelineCard({ item, index, inView, nowLabel }) {
 
 function Experience() {
     const [workRef, workInView] = useInView({ threshold: 0.1 });
-    const [projRef, projInView] = useInView({ threshold: 0.1 });
     const { t } = useLang();
 
     return (
@@ -74,23 +73,6 @@ function Experience() {
                 <div className="timeline" ref={workRef}>
                     {t.experience.work.map((item, i) => (
                         <TimelineCard key={i} item={item} index={i + 1} inView={workInView} nowLabel={t.experience.now} />
-                    ))}
-                </div>
-
-                <motion.h2
-                    className="section-title"
-                    style={{ marginTop: 80 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                >
-                    {t.experience.projectsTitle}
-                </motion.h2>
-
-                <div className="timeline" ref={projRef}>
-                    {t.experience.projects.map((item, i) => (
-                        <TimelineCard key={i} item={item} index={i + 1} inView={projInView} nowLabel={t.experience.now} />
                     ))}
                 </div>
             </div>

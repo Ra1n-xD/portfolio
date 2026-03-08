@@ -6,8 +6,9 @@ import About from './components/sections/About';
 import Skills from './components/sections/Skills';
 import Experience from './components/sections/Experience';
 import Projects from './components/sections/Projects';
-import Contact from './components/sections/Contact';
+import Mentoring from './components/sections/Mentoring';
 import Footer from './components/footer/Footer';
+import ParticleCanvas from './components/background/ParticleCanvas';
 
 import './styles/main.css';
 
@@ -16,6 +17,7 @@ function App() {
         <ThemeProvider>
             <LangProvider>
                 <div className="App">
+                    <ParticleCanvas />
                     <Navbar />
                     <main>
                         <Hero />
@@ -23,7 +25,7 @@ function App() {
                         <Skills />
                         <Experience />
                         <Projects />
-                        <Contact />
+                        <Mentoring />
                     </main>
                     <Footer />
                 </div>

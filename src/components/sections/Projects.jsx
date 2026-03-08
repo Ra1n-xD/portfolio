@@ -40,30 +40,36 @@ function Projects() {
                 </motion.h2>
 
                 <div className="projects-grid">
-                    {t.projectCards.items.map((project, i) => (
-                        <motion.div
-                            key={project.title}
-                            className="project-card"
-                            variants={fadeUp}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            custom={i * 0.5}
-                        >
-                            <div className="project-card-header">
-                                <span className="project-icon">{project.icon}</span>
-                            </div>
+                    {t.projectCards.items.map((project, i) => {
+                        const Tag = project.link ? motion.a : motion.div;
+                        const linkProps = project.link ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' } : {};
+                        return (
+                            <Tag
+                                key={project.title}
+                                className="project-card"
+                                variants={fadeUp}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                                custom={i * 0.5}
+                                {...linkProps}
+                            >
+                                <div className="project-card-header">
+                                    <span className="project-icon">{project.icon}</span>
+                                    {project.period && <span className="project-card-period">{project.period}</span>}
+                                </div>
 
-                            <div className="project-card-title">{project.title}</div>
-                            <p className="project-card-desc">{project.desc}</p>
+                                <div className="project-card-title">{project.title}</div>
+                                <p className="project-card-desc">{project.desc}</p>
 
-                            <div className="project-card-tags">
-                                {project.tags.map((tag) => (
-                                    <span key={tag} className="project-tag">{tag}</span>
-                                ))}
-                            </div>
-                        </motion.div>
-                    ))}
+                                <div className="project-card-tags">
+                                    {project.tags.map((tag) => (
+                                        <span key={tag} className="project-tag">{tag}</span>
+                                    ))}
+                                </div>
+                            </Tag>
+                        );
+                    })}
 
                     {/* Mentoring card — full width */}
                     <motion.a
@@ -94,7 +100,10 @@ function Projects() {
                             {t.projectCards.mentoring.badge && (
                                 <div className="mentoring-badge">{t.projectCards.mentoring.badge}</div>
                             )}
-                            <div className="project-card-title">{t.projectCards.mentoring.title}</div>
+                            <div className="mentoring-header">
+                                <div className="project-card-title">{t.projectCards.mentoring.title}</div>
+                                {t.projectCards.mentoring.period && <span className="project-card-period">{t.projectCards.mentoring.period}</span>}
+                            </div>
                             <p className="project-card-desc">{t.projectCards.mentoring.desc}</p>
                             <div className="project-card-tags">
                                 {t.projectCards.mentoring.tags.map((tag) => (

@@ -1,5 +1,7 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLang } from '../../context/LangContext';
+import myPhoto from '../../img/me.png';
 
 const fadeIn = {
     hidden: { opacity: 0, y: 24 },
@@ -38,8 +40,76 @@ const ICONS = {
     ),
 };
 
+function ProfileCardContent({ t }) {
+    return (
+        <>
+            <div className="profile-head">
+                <div className="profile-avatar">
+                    <img src={myPhoto} alt="Eduard Chervonenko" />
+                </div>
+                <div className="profile-head-info">
+                    <div className="profile-name">{t.hero.name}</div>
+                    <div className="profile-role">{t.hero.subtitle}</div>
+                </div>
+            </div>
+
+            <div className="profile-divider" />
+
+            <div className="profile-links">
+                <a href="https://t.me/ra1n_xd" target="_blank" rel="noopener noreferrer" className="profile-link">
+                    <span className="profile-link-key">{ICONS.telegram} Telegram</span>
+                    <span className="profile-link-val">@ra1n_xd</span>
+                </a>
+                <a href="https://t.me/fronted_engineer" target="_blank" rel="noopener noreferrer" className="profile-link">
+                    <span className="profile-link-key">{ICONS.channel} TG Channel</span>
+                    <span className="profile-link-val">@fronted_engineer</span>
+                </a>
+                <a href="https://github.com/Ra1n-xD" target="_blank" rel="noopener noreferrer" className="profile-link">
+                    <span className="profile-link-key">{ICONS.github} GitHub</span>
+                    <span className="profile-link-val">Ra1n-xD</span>
+                </a>
+                <a href="https://www.linkedin.com/in/chervonenko-ed" target="_blank" rel="noopener noreferrer" className="profile-link">
+                    <span className="profile-link-key">{ICONS.linkedin} LinkedIn</span>
+                    <span className="profile-link-val">chervonenko-ed</span>
+                </a>
+                <a href="mailto:ed.chervonenko@gmail.com" className="profile-link">
+                    <span className="profile-link-key">{ICONS.email} Email</span>
+                    <span className="profile-link-val">ed.chervonenko@…</span>
+                </a>
+            </div>
+
+            <div className="profile-tags">
+                {['React', 'TypeScript', 'Next.js', 'NestJS'].map((tag) => (
+                    <span key={tag} className="profile-tag">{tag}</span>
+                ))}
+            </div>
+        </>
+    );
+}
+
+// Global modal open function — called from Navbar
+let _openContactModal = () => {};
+export function openContactModal() { _openContactModal(); }
+
 function Hero() {
     const { t } = useLang();
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const open = useCallback(() => setModalOpen(true), []);
+    const close = useCallback(() => setModalOpen(false), []);
+
+    useEffect(() => { _openContactModal = open; }, [open]);
+
+    useEffect(() => {
+        if (modalOpen) {
+            document.body.style.overflow = 'hidden';
+            const onKey = (e) => { if (e.key === 'Escape') close(); };
+            window.addEventListener('keydown', onKey);
+            return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
+        } else {
+            document.body.style.overflow = '';
+        }
+    }, [modalOpen, close]);
 
     const scrollTo = (id) => {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -58,48 +128,7 @@ function Hero() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
                 >
-                    <div className="profile-avatar">
-                        <svg width="36" height="36" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18 14C18 14 18 66 18 66L48 66C62 66 68 58 68 50C68 42 62 36 52 36C60 36 64 30 64 24C64 18 58 14 48 14Z" fill="white"/>
-                            <rect x="28" y="34" width="20" height="8" rx="2" fill="rgba(56,182,255,0.5)"/>
-                        </svg>
-                    </div>
-
-                    <div>
-                        <div className="profile-name">Eduard Chervonenko</div>
-                        <div className="profile-role">{t.hero.subtitle}</div>
-
-                        <div className="profile-divider" />
-
-                        <div className="profile-links">
-                            <a href="https://t.me/ra1n_xd" target="_blank" rel="noopener noreferrer" className="profile-link">
-                                <span className="profile-link-key">{ICONS.telegram} Telegram</span>
-                                <span className="profile-link-val">@ra1n_xd</span>
-                            </a>
-                            <a href="https://t.me/fronted_engineer" target="_blank" rel="noopener noreferrer" className="profile-link">
-                                <span className="profile-link-key">{ICONS.channel} TG Channel</span>
-                                <span className="profile-link-val">@fronted_engineer</span>
-                            </a>
-                            <a href="https://github.com/Ra1n-xD" target="_blank" rel="noopener noreferrer" className="profile-link">
-                                <span className="profile-link-key">{ICONS.github} GitHub</span>
-                                <span className="profile-link-val">Ra1n-xD</span>
-                            </a>
-                            <a href="https://www.linkedin.com/in/chervonenko-ed" target="_blank" rel="noopener noreferrer" className="profile-link">
-                                <span className="profile-link-key">{ICONS.linkedin} LinkedIn</span>
-                                <span className="profile-link-val">chervonenko-ed</span>
-                            </a>
-                            <a href="mailto:ed.chervonenko@gmail.com" className="profile-link">
-                                <span className="profile-link-key">{ICONS.email} Email</span>
-                                <span className="profile-link-val">ed.chervonenko@…</span>
-                            </a>
-                        </div>
-
-                        <div className="profile-tags">
-                            {['React', 'TypeScript', 'Next.js', 'NestJS', 'Docker'].map((tag) => (
-                                <span key={tag} className="profile-tag">{tag}</span>
-                            ))}
-                        </div>
-                    </div>
+                    <ProfileCardContent t={t} />
                 </motion.div>
 
                 {/* Hero content */}
@@ -114,8 +143,8 @@ function Hero() {
                     </motion.div>
 
                     <motion.h1 className="hero-title" variants={fadeIn} custom={1}>
-                        Eduard
-                        <em> Chervonenko</em>
+                        {t.hero.firstName}
+                        <em> {t.hero.lastName}</em>
                     </motion.h1>
 
                     <motion.p className="hero-subtitle" variants={fadeIn} custom={2}>
@@ -127,7 +156,7 @@ function Hero() {
                     </motion.p>
 
                     <motion.div className="hero-actions" variants={fadeIn} custom={4}>
-                        <button className="btn-primary" onClick={() => scrollTo('contact')}>
+                        <button className="btn-primary" onClick={open}>
                             {t.hero.cta}
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -153,6 +182,36 @@ function Hero() {
                 <div className="hero-scroll-line" />
                 <span>{t.hero.scroll}</span>
             </div>
+
+            {/* Contact modal */}
+            <AnimatePresence>
+                {modalOpen && (
+                    <motion.div
+                        className="modal-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        onClick={close}
+                    >
+                        <motion.div
+                            className="modal-card profile-card"
+                            initial={{ opacity: 0, scale: 0.92, y: 24 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.92, y: 24 }}
+                            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button className="modal-close" onClick={close} aria-label="Close">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M18 6 6 18M6 6l12 12"/>
+                                </svg>
+                            </button>
+                            <ProfileCardContent t={t} />
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }
