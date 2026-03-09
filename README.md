@@ -1,9 +1,9 @@
 # 👋 Eduard Chervonenko 
-## < Fullstack Developer | TeamLead | Mentor />
 
 🌐 **Live:** [ra1n-xd.github.io/portfolio](https://ra1n-xd.github.io/portfolio/)
 
 ## 🧑‍💻 About Me
+
 
 Fullstack developer with over 3 years of experience building web applications using React, TypeScript, Next.js,
 and NestJS. Some experience in team leadership, CI/CD setup, and DevOps processes. Passionate about
