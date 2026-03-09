@@ -1,4 +1,5 @@
-# 👋 Eduard Chervonenko < Fullstack | TeamLead | Mentor />
+# 👋 Eduard Chervonenko 
+|< Fullstack Developer | TeamLead | Mentor />
 
 🌐 **Live:** [ra1n-xd.github.io/portfolio](https://ra1n-xd.github.io/portfolio/)
 
