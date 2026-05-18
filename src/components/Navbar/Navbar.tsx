@@ -5,14 +5,46 @@ import { useTheme } from '@/Context/ThemeContext';
 import { useModal } from '@/Context/ModalContext';
 import logo from '@/assets/fronted-logo.png';
 
-const NAV_IDS = ['about', 'experience', 'projects', 'mentoring'];
+const NAV_IDS = ['about', 'experience', 'projects', 'mentoring'] as const;
+type NavId = (typeof NAV_IDS)[number];
+type NavSection = {
+    id: NavId;
+    top: number;
+    bottom: number;
+};
+
+const getActiveSection = (sections: NavSection[], scrollY: number, viewportHeight: number, documentHeight: number): NavId | '' => {
+    if (!sections.length) return '';
+
+    const maxScrollY = Math.max(documentHeight - viewportHeight, 0);
+    if (maxScrollY > 0 && scrollY >= maxScrollY - 2) {
+        return sections[sections.length - 1].id;
+    }
+
+    const activationOffset = Math.min(Math.max(viewportHeight * 0.32, 160), 360);
+    const activationY = scrollY + activationOffset;
+    let current: NavId | '' = '';
+
+    for (const section of sections) {
+        if (activationY >= section.top && activationY < section.bottom) {
+            return section.id;
+        }
+        if (activationY >= section.top) {
+            current = section.id;
+        }
+    }
+
+    return current;
+};
+
+const isNavId = (id: string): id is NavId => NAV_IDS.includes(id as NavId);
 
 function Navbar() {
     const { t, lang, toggleLang } = useLang();
     const { theme, toggleTheme } = useTheme();
     const { openModal } = useModal();
     const [scrolled, setScrolled] = useState(false);
-    const [active, setActive] = useState('');
+    const [active, setActive] = useState<NavId | ''>('');
     const [mobileOpen, setMobileOpen] = useState(false);
     const listRef = useRef<HTMLUListElement>(null);
     const [pill, setPill] = useState({ left: 0, width: 0, opacity: 0 });
@@ -48,14 +80,23 @@ function Navbar() {
     useEffect(() => {
         const onScroll = () => {
             setScrolled(window.scrollY > 20);
-            let current = '';
-            NAV_IDS.forEach((id) => {
+            const sections = NAV_IDS.flatMap((id) => {
                 const sec = document.getElementById(id);
-                if (sec && window.scrollY >= sec.offsetTop - 120) current = id;
+                return sec
+                    ? [
+                          {
+                              id,
+                              top: sec.offsetTop,
+                              bottom: sec.offsetTop + sec.offsetHeight
+                          }
+                      ]
+                    : [];
             });
-            setActive(current);
+            const current = getActiveSection(sections, window.scrollY, window.innerHeight, document.documentElement.scrollHeight);
+            setActive((prev) => (prev === current ? prev : current));
         };
         window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
@@ -67,6 +108,7 @@ function Navbar() {
     }, [mobileOpen]);
 
     const scrollTo = (id: string) => {
+        setActive(isNavId(id) ? id : '');
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
         setMobileOpen(false);
     };
