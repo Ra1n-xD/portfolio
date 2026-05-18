@@ -222,10 +222,11 @@ const translations: Record<Lang, Translations> = {
                     period: 'Feb 2024 — Present',
                     current: true,
                     bullets: [
-                        'Refactored legacy projects (migrated from class components and Redux), introduced ESLint and Prettier — improved maintainability and team code style standards.',
-                        'Developed frontend for a multi-channel communication service (Email, SMS, Push, social networks, messengers) — unified campaign management interface for the client.',
-                        'Built frontend for a meeting and electronic voting management service, replacing paper-based workflows and accelerating decision-making.',
-                        'Contributed to an internal UI Kit, unifying visual style and reducing new interface development time via reusable components.'
+                        'Refactored legacy projects: migrated from class components and Redux.',
+                        'Introduced ESLint and Prettier.',
+                        'Developed frontend for a multi-channel communication service: Email, SMS, Push, social networks and messengers.',
+                        'Developed frontend for a meeting management and electronic voting service.',
+                        'Contributed to the development of an internal UI Kit.'
                     ]
                 },
                 {
@@ -234,9 +235,10 @@ const translations: Record<Lang, Translations> = {
                     period: 'Jan 2021 — Jul 2021',
                     current: false,
                     bullets: [
-                        'Built fullstack websites and admin panels from scratch for local businesses (pharmacies, stores), addressing regional digitalization needs.',
-                        'Integrated third-party services via API on demand, extending product functionality.',
-                        'Mentored new developers and introduced Git and Scrum to the company, reducing onboarding time and eliminating code loss.'
+                        'Built fullstack websites and admin panels from scratch for local businesses: pharmacies, stores and other projects.',
+                        'Integrated third-party services via API.',
+                        'Mentored new developers.',
+                        'Introduced Git and Scrum into the team workflow.'
                     ]
                 }
             ]
@@ -259,8 +261,7 @@ const translations: Record<Lang, Translations> = {
                     role: 'Fullstack Developer',
                     period: 'Feb 2026 — Present',
                     desc: 'Web platform for board games — play with friends online in real time. Built as a fullstack pet project.',
-                    tags: ['React', 'TypeScript', 'NestJS', 'WebSocket'],
-                    link: 'https://partyplay.duckdns.org:8444/'
+                    tags: ['React', 'TypeScript', 'NestJS', 'WebSocket']
                 }
             ],
             mentoring: {
@@ -374,26 +375,28 @@ const translations: Record<Lang, Translations> = {
             now: 'сейчас',
             work: [
                 {
-                    role: 'Frontend Developer',
+                    role: 'Frontend-разработчик',
                     company: 'Txix',
-                    period: 'Фев 2024 — н.в.',
+                    period: 'Фев 2024 — настоящее время',
                     current: true,
                     bullets: [
-                        'Рефакторинг легаси-проектов (миграция с классовых компонентов и Redux), внедрение ESLint и Prettier — улучшение поддерживаемости и стандартов кода.',
-                        'Разработка фронтенда сервиса мультиканальных коммуникаций (Email, SMS, Push, соцсети, мессенджеры) — единый интерфейс управления рассылками.',
-                        'Создание фронтенда сервиса управления совещаниями и электронным голосованием, заменившего бумажный документооборот.',
-                        'Участие в разработке внутреннего UI Kit — унификация визуального стиля и сокращение времени создания интерфейсов.'
+                        'Рефакторинг легаси-проектов: миграция с классовых компонентов и Redux.',
+                        'Внедрение ESLint и Prettier.',
+                        'Разработка фронтенда сервиса многоканальных коммуникаций: Email, SMS, Push, соцсети и мессенджеры.',
+                        'Разработка фронтенда сервиса управления заседаниями и электронным голосованием.',
+                        'Участие в разработке внутреннего UI-Kit.'
                     ]
                 },
                 {
-                    role: 'Fullstack Developer',
+                    role: 'Fullstack-разработчик',
                     company: 'SG-Group',
                     period: 'Янв 2021 — Июл 2021',
                     current: false,
                     bullets: [
-                        'Создание сайтов и админ-панелей с нуля для локальных бизнесов (аптеки, магазины).',
-                        'Интеграция сторонних сервисов через API по запросу, расширение функциональности продуктов.',
-                        'Менторинг новых разработчиков, внедрение Git и Scrum — сокращение онбординга и устранение потерь кода.'
+                        'Разработка с нуля fullstack-сайтов и админ-панелей для локального бизнеса: аптеки, магазины и другие проекты.',
+                        'Интеграция сторонних сервисов через API.',
+                        'Менторинг новых разработчиков.',
+                        'Внедрение Git и Scrum в рабочие процессы команды.'
                     ]
                 }
             ]
@@ -416,8 +419,7 @@ const translations: Record<Lang, Translations> = {
                     role: 'Fullstack Developer',
                     period: 'Фев 2026 — н.в.',
                     desc: 'Веб-платформа для настольных игр — играйте с друзьями онлайн в реальном времени.',
-                    tags: ['React', 'TypeScript', 'NestJS', 'WebSocket'],
-                    link: 'https://partyplay.duckdns.org:8444/'
+                    tags: ['React', 'TypeScript', 'NestJS', 'WebSocket']
                 }
             ],
             mentoring: {
