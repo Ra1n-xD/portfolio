@@ -222,11 +222,10 @@ const translations: Record<Lang, Translations> = {
                     period: 'Feb 2024 — Present',
                     current: true,
                     bullets: [
-                        'Refactored legacy projects: migrated from class components and Redux.',
-                        'Introduced ESLint and Prettier.',
-                        'Developed frontend for a multi-channel communication service: Email, SMS, Push, social networks and messengers.',
-                        'Developed frontend for a meeting management and electronic voting service.',
-                        'Contributed to the development of an internal UI Kit.'
+                        'Refactored legacy projects (migrated from class components and Redux), introduced ESLint and Prettier, improving codebase maintainability, standardizing code style across the team, and boosting performance of updated project versions.',
+                        'Developed the frontend for a multi-channel communication service (Email, SMS, Push, social networks, messengers), providing the client with a unified interface for managing campaigns across all channels.',
+                        'Built the frontend for a meeting and electronic voting management service, replacing paper-based workflows and accelerating the decision-making process for the client.',
+                        'Contributed to the development of an internal UI Kit, unifying the visual style and reducing new interface development time through reusable components.'
                     ]
                 },
                 {
@@ -235,10 +234,9 @@ const translations: Record<Lang, Translations> = {
                     period: 'Jan 2021 — Jul 2021',
                     current: false,
                     bullets: [
-                        'Built fullstack websites and admin panels from scratch for local businesses: pharmacies, stores and other projects.',
-                        'Integrated third-party services via API.',
-                        'Mentored new developers.',
-                        'Introduced Git and Scrum into the team workflow.'
+                        'Built fullstack websites and admin panels from scratch for local businesses (pharmacies, stores, etc.), addressing the region’s digitalization needs in the absence of major retail chains.',
+                        'Integrated third-party services via API on demand, extending products’ functionality.',
+                        'Mentored new developers and introduced Git and Scrum to the company, reducing onboarding time and eliminating code loss.'
                     ]
                 }
             ]
@@ -380,11 +378,10 @@ const translations: Record<Lang, Translations> = {
                     period: 'Фев 2024 — настоящее время',
                     current: true,
                     bullets: [
-                        'Рефакторинг легаси-проектов: миграция с классовых компонентов и Redux.',
-                        'Внедрение ESLint и Prettier.',
-                        'Разработка фронтенда сервиса многоканальных коммуникаций: Email, SMS, Push, соцсети и мессенджеры.',
-                        'Разработка фронтенда сервиса управления заседаниями и электронным голосованием.',
-                        'Участие в разработке внутреннего UI-Kit.'
+                        'Провёл рефакторинг легаси-проектов (миграция с классовых компонентов и Redux), внедрил ESLint и Prettier, что улучшило поддерживаемость кодовой базы, стандартизировало стиль кода в команде и повысило производительность обновлённых версий проектов.',
+                        'Разработал frontend сервиса многоканальных коммуникаций (Email, SMS, Push, соцсети, мессенджеры), обеспечив заказчику единый интерфейс управления рассылками по всем каналам.',
+                        'Разработал frontend сервиса управления заседаниями и электронным голосованием, заменив бумажный документооборот и ускорив процесс принятия решений для нужд заказчика.',
+                        'Участвовал в разработке внутреннего UI-Kit, унифицировав визуальный стиль и сократив время разработки новых интерфейсов за счёт переиспользуемых компонентов.'
                     ]
                 },
                 {
@@ -393,10 +390,9 @@ const translations: Record<Lang, Translations> = {
                     period: 'Янв 2021 — Июл 2021',
                     current: false,
                     bullets: [
-                        'Разработка с нуля fullstack-сайтов и админ-панелей для локального бизнеса: аптеки, магазины и другие проекты.',
-                        'Интеграция сторонних сервисов через API.',
-                        'Менторинг новых разработчиков.',
-                        'Внедрение Git и Scrum в рабочие процессы команды.'
+                        'Разработал с нуля fullstack-сайты и админ-панели для локального бизнеса (аптеки, магазины и т.д), закрывая потребность региона в цифровизации при отсутствии крупных сетей.',
+                        'По требованию интегрировал сторонние сервисы через API, расширив функциональность продуктов.',
+                        'Менторил новых разработчиков и внедрил в компанию Git и Scrum, сократив время онбординга и устранив потерю кода.'
                     ]
                 }
             ]
