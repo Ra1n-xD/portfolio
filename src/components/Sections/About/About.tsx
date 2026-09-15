@@ -31,6 +31,7 @@ function About() {
                             <p>{t.about.p1}</p>
                             <p>{t.about.p2}</p>
                             <p>{t.about.p3}</p>
+                            <p>{t.about.community}</p>
                         </motion.div>
 
                         <motion.div className="about-stats" variants={fadeUp} custom={3}>

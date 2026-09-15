@@ -24,6 +24,12 @@
     font-weight: 600;
 }
 
+.about-text a {
+    color: var(--a);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 .about-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;

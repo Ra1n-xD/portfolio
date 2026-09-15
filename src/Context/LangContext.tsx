@@ -30,6 +30,7 @@ export interface ProjectItem {
     desc: string;
     tags: string[];
     link?: string;
+    videoId?: string;
 }
 
 export interface MentoringProject {
@@ -99,6 +100,7 @@ export interface Translations {
         p1: ReactNode;
         p2: ReactNode;
         p3: ReactNode;
+        community: ReactNode;
         stats: Stat[];
     };
     skills: {
@@ -192,6 +194,12 @@ const translations: Record<Lang, Translations> = {
                     and establishing good engineering practices in teams.
                 </>
             ),
+            community: (
+                <>
+                    I'm a member of the <strong>IT-ХОЗЯЕВА</strong> developer community and have given a talk on its behalf. I also run a{' '}
+                    <a href="https://t.me/s/fronted_engineer" target="_blank" rel="noopener noreferrer">Telegram channel</a>.
+                </>
+            ),
             stats: [
                 { number: '3+', label: 'Years of experience' },
                 { number: '10+', label: 'Projects shipped' },
@@ -216,6 +224,19 @@ const translations: Record<Lang, Translations> = {
             workTitle: 'Work Experience',
             now: 'now',
             work: [
+                {
+                    role: "Fullstack Developer / Team Lead",
+                    company: "Center-Instrument · Part-time",
+                    period: "Feb 2026 — Present",
+                    current: true,
+                    bullets: [
+                        "Develop a B2B e-commerce platform for industrial tools end-to-end using Next.js, React, TypeScript, Node.js, Express, Prisma and PostgreSQL.",
+                        "Built the catalog with search and filters, product pages, cart, favorites and customer accounts. Developed checkout for individuals and businesses with discounts, payments, delivery, order statuses and email notifications.",
+                        "Developed an admin panel for catalog, promotions, users, roles and orders. Automated XLSX imports with preview, column mapping, validation, SKU-based updates and row-level error handling; built a data export bot to reduce manual work.",
+                        "Implemented JWT authentication with access/refresh tokens, httpOnly cookies, role-based access and OTP login, email verification and password recovery. Worked on Alfa-Bank, Yandex Delivery and DaData integrations.",
+                        "Lead technical decisions, task breakdown and assignment, code reviews and implementation quality. Manage content editors, prioritize catalog updates and oversee product data quality."
+                    ]
+                },
                 {
                     role: 'Frontend Developer',
                     company: 'Txix',
@@ -246,6 +267,15 @@ const translations: Record<Lang, Translations> = {
             title: 'Projects',
             items: [
                 {
+                    icon: ICONS.dice,
+                    title: 'PartyPlay',
+                    role: 'Fullstack Developer',
+                    period: 'Feb 2026 — Present',
+                    desc: 'Web platform for board games — play with friends online in real time. Built as a fullstack pet project.',
+                    tags: ['React', 'TypeScript', 'NestJS', 'WebSocket'],
+                    link: 'http://partyplay.duckdns.org/'
+                },
+                {
                     icon: ICONS.messageCircle,
                     title: 'ManipulA',
                     role: 'TeamLead',
@@ -254,12 +284,14 @@ const translations: Record<Lang, Translations> = {
                     tags: ['NestJS', 'React', 'PostgreSQL', 'Docker', 'Telegram Bot API']
                 },
                 {
-                    icon: ICONS.dice,
-                    title: 'PartyPlay',
-                    role: 'Fullstack Developer',
-                    period: 'Feb 2026 — Present',
-                    desc: 'Web platform for board games — play with friends online in real time. Built as a fullstack pet project.',
-                    tags: ['React', 'TypeScript', 'NestJS', 'WebSocket']
+                    icon: ICONS.megaphone,
+                    title: "Talk · IT-ХОЗЯЕВА",
+                    role: "Speaker",
+                    period: "",
+                    desc: "Gave a talk representing the IT-ХОЗЯЕВА developer community. Watch the recording on YouTube.",
+                    tags: ["Community", "Public Speaking", "YouTube"],
+                    link: 'https://youtu.be/XQ9E-r7i0oE?si=7Aycqj15CY7lRj7D',
+                    videoId: 'XQ9E-r7i0oE'
                 }
             ],
             mentoring: {
@@ -348,6 +380,12 @@ const translations: Record<Lang, Translations> = {
                     практики в командах.
                 </>
             ),
+            community: (
+                <>
+                    Участвую в сообществе <strong>IT-ХОЗЯЕВА</strong> и выступал от его имени с докладом. Также веду свой{' '}
+                    <a href="https://t.me/s/fronted_engineer" target="_blank" rel="noopener noreferrer">Telegram-канал</a>.
+                </>
+            ),
             stats: [
                 { number: '3+', label: 'Лет опыта' },
                 { number: '10+', label: 'Проектов' },
@@ -372,6 +410,19 @@ const translations: Record<Lang, Translations> = {
             workTitle: 'Опыт работы',
             now: 'сейчас',
             work: [
+                {
+                    role: "Fullstack-разработчик / Team Lead",
+                    company: "Центр-Инструмент · Частичная занятость",
+                    period: "Фев 2026 — настоящее время",
+                    current: true,
+                    bullets: [
+                        "Разрабатываю и развиваю B2B e-commerce платформу промышленного инструмента: frontend на Next.js, React и TypeScript, backend на Node.js, Express, Prisma и PostgreSQL.",
+                        "Реализовал каталог с поиском и фильтрацией, карточки товаров, корзину, избранное и личный кабинет. Развивал оформление заказов для физических и юридических лиц со скидками, оплатой, доставкой, статусами и email-уведомлениями.",
+                        "Разработал админ-панель для управления каталогом, промо-материалами, пользователями, ролями и заказами. Автоматизировал XLSX-импорт с предпросмотром, сопоставлением колонок, валидацией, обновлением по SKU и построчной обработкой ошибок; создал бота для выгрузки данных и сокращения ручной работы.",
+                        "Реализовал JWT-аутентификацию с access/refresh-токенами, httpOnly cookie, ролевым доступом, OTP-входом, подтверждением email и восстановлением пароля. Работал над интеграциями с Альфа-Банком, Яндекс Доставкой и DaData.",
+                        "Выполняю функции тимлида: выбираю технические решения, декомпозирую и распределяю задачи, провожу code review и контролирую качество. Руковожу контент-менеджерами, приоритизирую наполнение каталога и слежу за качеством товарных данных."
+                    ]
+                },
                 {
                     role: 'Frontend-разработчик',
                     company: 'Txix',
@@ -402,6 +453,15 @@ const translations: Record<Lang, Translations> = {
             title: 'Проекты',
             items: [
                 {
+                    icon: ICONS.dice,
+                    title: 'PartyPlay',
+                    role: 'Fullstack Developer',
+                    period: 'Фев 2026 — н.в.',
+                    desc: 'Веб-платформа для настольных игр — играйте с друзьями онлайн в реальном времени.',
+                    tags: ['React', 'TypeScript', 'NestJS', 'WebSocket'],
+                    link: 'http://partyplay.duckdns.org/'
+                },
+                {
                     icon: ICONS.messageCircle,
                     title: 'ManipulA',
                     role: 'TeamLead',
@@ -410,12 +470,14 @@ const translations: Record<Lang, Translations> = {
                     tags: ['NestJS', 'React', 'PostgreSQL', 'Docker', 'Telegram Bot API']
                 },
                 {
-                    icon: ICONS.dice,
-                    title: 'PartyPlay',
-                    role: 'Fullstack Developer',
-                    period: 'Фев 2026 — н.в.',
-                    desc: 'Веб-платформа для настольных игр — играйте с друзьями онлайн в реальном времени.',
-                    tags: ['React', 'TypeScript', 'NestJS', 'WebSocket']
+                    icon: ICONS.megaphone,
+                    title: "Доклад · IT-ХОЗЯЕВА",
+                    role: "Спикер",
+                    period: "",
+                    desc: "Выступил с докладом от сообщества IT-ХОЗЯЕВА. Запись выступления доступна на YouTube.",
+                    tags: ["Сообщество", "Выступление", "YouTube"],
+                    link: 'https://youtu.be/XQ9E-r7i0oE?si=7Aycqj15CY7lRj7D',
+                    videoId: 'XQ9E-r7i0oE'
                 }
             ],
             mentoring: {

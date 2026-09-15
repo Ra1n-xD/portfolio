@@ -1,7 +1,7 @@
 import './Projects.css';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useLang, type ProjectItem } from '@/Context/LangContext';
+import { useLang, type MentoringProject, type ProjectItem } from '@/Context/LangContext';
 import { fadeUp } from '@/constants/animations';
 
 const YT_VIDEO_ID = 'W2y0QlShyd0';
@@ -16,7 +16,57 @@ const handleGlassMove = (e: React.MouseEvent<HTMLElement>) => {
     e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
 };
 
+interface VideoCardProps {
+    project: Omit<MentoringProject, 'badge'> & { badge?: string | null };
+    link: string;
+    thumbnail: string;
+    index: number;
+}
+
+const VideoCard = ({ project, link, thumbnail, index }: VideoCardProps) => (
+    <motion.a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="project-card mentoring-card"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        custom={index * 0.5}
+    >
+        <div className="mentoring-thumb-wrap">
+            <img src={thumbnail} alt={project.title} className="mentoring-thumb" loading="lazy" />
+            <div className="mentoring-play">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                </svg>
+            </div>
+        </div>
+        <div className="mentoring-info">
+            {project.badge && <div className="mentoring-badge">{project.badge}</div>}
+            <div className="mentoring-header">
+                <div className="project-card-title">{project.title}</div>
+                {project.period && <span className="project-card-period">{project.period}</span>}
+            </div>
+            {project.role && <div className="project-card-role">{project.role}</div>}
+            <p className="project-card-desc">{project.desc}</p>
+            <div className="project-card-tags">
+                {project.tags.map((tag, i) => (
+                    <span key={i} className="project-tag">
+                        {tag}
+                    </span>
+                ))}
+            </div>
+        </div>
+    </motion.a>
+);
+
 const ProjectCard = ({ project, index }: { project: ProjectItem; index: number }) => {
+    if (project.videoId && project.link) {
+        return <VideoCard project={project} link={project.link} thumbnail={`https://img.youtube.com/vi/${project.videoId}/hqdefault.jpg`} index={index} />;
+    }
+
     const content = (
         <>
             <div className="project-card-header">
@@ -75,42 +125,7 @@ function Projects() {
                         <ProjectCard key={i} project={project} index={i} />
                     ))}
 
-                    <motion.a
-                        href={YT_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-card mentoring-card"
-                        variants={fadeUp}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        custom={t.projectCards.items.length * 0.5}
-                    >
-                        <div className="mentoring-thumb-wrap">
-                            <img src={YT_THUMB} alt={t.projectCards.mentoring.title} className="mentoring-thumb" loading="lazy" />
-                            <div className="mentoring-play">
-                                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div className="mentoring-info">
-                            {t.projectCards.mentoring.badge && <div className="mentoring-badge">{t.projectCards.mentoring.badge}</div>}
-                            <div className="mentoring-header">
-                                <div className="project-card-title">{t.projectCards.mentoring.title}</div>
-                                {t.projectCards.mentoring.period && <span className="project-card-period">{t.projectCards.mentoring.period}</span>}
-                            </div>
-                            {t.projectCards.mentoring.role && <div className="project-card-role">{t.projectCards.mentoring.role}</div>}
-                            <p className="project-card-desc">{t.projectCards.mentoring.desc}</p>
-                            <div className="project-card-tags">
-                                {t.projectCards.mentoring.tags.map((tag, i) => (
-                                    <span key={i} className="project-tag">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    </motion.a>
+                    <VideoCard project={t.projectCards.mentoring} link={YT_URL} thumbnail={YT_THUMB} index={t.projectCards.items.length} />
                 </div>
             </div>
         </section>
