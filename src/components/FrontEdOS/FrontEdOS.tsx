@@ -1,0 +1,526 @@
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'framer-motion';
+import { useLang, type Translations } from '@/Context/LangContext';
+import { useTheme } from '@/Context/ThemeContext';
+import portrait from '@/assets/me.png';
+import logo from '@/assets/fronted-logo.png';
+import './FrontEdOS.css';
+
+const SECTIONS = ['home', 'about', 'skills', 'experience', 'projects', 'mentoring', 'contact'] as const;
+type Section = (typeof SECTIONS)[number];
+const RESUME_URL = 'https://drive.google.com/drive/folders/1KZ_eu9n9IdUYwfX7PUSVSgQC4hz5nBMp';
+const MENTORING_VIDEO = 'https://www.youtube.com/live/W2y0QlShyd0?si=vIflkj8zBXXuKTfH';
+const SECTION_FILES: Record<Section, string> = { home: 'about.me', about: 'about', skills: 'tech-stack', experience: 'career', projects: 'portfolio', mentoring: 'mentoring', contact: 'contact' };
+const readSection = (): Section => {
+    const value = window.location.hash.slice(1);
+    return SECTIONS.includes(value as Section) ? (value as Section) : 'home';
+};
+
+function Arrow({ diagonal = false }: { diagonal?: boolean }) {
+    return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            {diagonal ? <path d="M6 18 18 6M6 6h12v12" /> : <path d="M5 12h14m-6-6 6 6-6 6" />}
+        </svg>
+    );
+}
+
+function Folder({ section }: { section: Section }) {
+    return (
+        <span className={`os-folder os-folder--${section}`} aria-hidden="true">
+            <span className="os-folder-mark">
+                {section === 'about' ? 'me' : section === 'skills' ? '</>' : section === 'experience' ? '↗' : section === 'projects' ? '✳' : section === 'mentoring' ? '01' : '@'}
+            </span>
+        </span>
+    );
+}
+
+function ExternalLink({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
+    return (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+            {children}
+        </a>
+    );
+}
+
+function Tags({ items }: { items: string[] }) {
+    return (
+        <div className="os-tags">
+            {items.map((tag) => (
+                <span key={tag}>{tag}</span>
+            ))}
+        </div>
+    );
+}
+
+function Stats({ t }: { t: Translations }) {
+    return (
+        <div className="os-stats">
+            {t.about.stats.map((stat) => (
+                <div key={stat.label}>
+                    <strong>{stat.number}</strong>
+                    <span>{stat.label}</span>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+function PageHeading({ label, title }: { label: string; title: string }) {
+    return (
+        <div className="os-page-heading">
+            <span className="os-eyebrow">{label}</span>
+            <h1 id="os-page-title">{title}</h1>
+        </div>
+    );
+}
+
+function HomePage() {
+    const { t, lang } = useLang();
+    const ru = lang === 'ru';
+    const quickLinks = [
+        { title: 'Telegram', value: '@ra1n_xd', href: 'https://t.me/ra1n_xd' },
+        { title: ru ? 'Telegram-канал' : 'Telegram Channel', value: '@fronted_engineer', href: 'https://t.me/fronted_engineer' },
+        { title: 'GitHub', value: 'Ra1n-xD', href: 'https://github.com/Ra1n-xD' },
+        { title: 'CV / Resume', value: 'Google Drive', href: RESUME_URL }
+    ];
+    return (
+        <div className="os-home">
+            <div className="os-home-main">
+                <span className="os-status">
+                    <span />
+                    {t.hero.badge}
+                </span>
+                <div className="os-profile">
+                    <div className="os-avatar">
+                        <img src={portrait} alt={t.hero.name} width="160" height="160" />
+                    </div>
+                    <div>
+                        <span className="os-eyebrow">FULLSTACK / TEAMLEAD / MENTOR</span>
+                        <h1 id="os-page-title">
+                            {t.hero.firstName}
+                            <br />
+                            {t.hero.lastName}
+                        </h1>
+                    </div>
+                </div>
+                <p className="os-home-description">{t.hero.desc}</p>
+                <Tags items={['React', 'TypeScript', 'Next.js', 'NestJS']} />
+                <div className="os-actions">
+                    <a href="#projects" className="os-button os-button--primary">
+                        {t.projectCards.title}
+                        <Arrow />
+                    </a>
+                    <a href="#experience" className="os-button">
+                        {t.hero.viewExperience}
+                        <Arrow />
+                    </a>
+                </div>
+                <Stats t={t} />
+            </div>
+            <aside className="os-quick-access" aria-label={ru ? 'Быстрый доступ' : 'Quick access'}>
+                <div className="os-eyebrow">{ru ? 'Быстрый доступ' : 'Quick access'}</div>
+                <a className="os-project-shortcut" href="#projects">
+                    <Folder section="projects" />
+                    <div>
+                        <strong>PartyPlay</strong>
+                        <span>React · NestJS · WebSocket</span>
+                    </div>
+                    <Arrow diagonal />
+                </a>
+                <a className="os-project-shortcut" href="#projects">
+                    <Folder section="experience" />
+                    <div>
+                        <strong>ManipulA</strong>
+                        <span>TeamLead · Telegram Bot</span>
+                    </div>
+                    <Arrow diagonal />
+                </a>
+                <div className="os-quick-links">
+                    {quickLinks.map((link) => (
+                        <ExternalLink href={link.href} key={link.title}>
+                            <div>
+                                <span>{link.title}</span>
+                                <strong>{link.value}</strong>
+                            </div>
+                            <Arrow diagonal />
+                        </ExternalLink>
+                    ))}
+                </div>
+                <a href="#contact" className="os-all-links">
+                    {ru ? 'Все контакты' : 'All contact links'}
+                    <Arrow />
+                </a>
+            </aside>
+        </div>
+    );
+}
+
+function AboutPage() {
+    const { t } = useLang();
+    return (
+        <>
+            <PageHeading label={t.about.label} title={t.about.title} />
+            <div className="os-about-layout">
+                <div className="os-prose">
+                    <p>{t.about.p1}</p>
+                    <p>{t.about.p2}</p>
+                    <p>{t.about.p3}</p>
+                    <p>{t.about.community}</p>
+                </div>
+                <figure className="os-photo">
+                    <img src={portrait} alt={t.hero.name} width="420" height="420" />
+                    <figcaption>{t.hero.cardRole}</figcaption>
+                </figure>
+            </div>
+            <Stats t={t} />
+        </>
+    );
+}
+
+function SkillsPage() {
+    const { t } = useLang();
+    return (
+        <>
+            <PageHeading label={t.skills.label} title={t.skills.title} />
+            <div className="os-skills-grid">
+                {t.skills.groups.map((group, index) => (
+                    <article className="os-skill" key={group.title}>
+                        <div className="os-skill-heading">
+                            <span className="os-skill-icon" aria-hidden="true">
+                                {group.icon}
+                            </span>
+                            <span className="os-eyebrow">0{index + 1}</span>
+                        </div>
+                        <h2>{group.title}</h2>
+                        <Tags items={group.tags} />
+                    </article>
+                ))}
+            </div>
+        </>
+    );
+}
+
+function CareerPage() {
+    const { t } = useLang();
+    return (
+        <>
+            <PageHeading label={t.experience.label} title={t.experience.workTitle} />
+            <div className="os-career">
+                {t.experience.work.map((work, index) => (
+                    <article className="os-work" key={work.company}>
+                        <div className="os-work-meta">
+                            <span className="os-eyebrow">
+                                0{index + 1} / {work.period}
+                            </span>
+                            <h2>{work.company}</h2>
+                            {work.current && (
+                                <span className="os-status">
+                                    <span />
+                                    {t.experience.now}
+                                </span>
+                            )}
+                        </div>
+                        <div className="os-work-detail">
+                            <h3>{work.role}</h3>
+                            <ul className="os-list">
+                                {work.bullets.map((bullet) => (
+                                    <li key={bullet}>{bullet}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </>
+    );
+}
+
+function ProjectsPage() {
+    const { t, lang } = useLang();
+    const reduceMotion = useReducedMotion();
+    const projects = [...t.projectCards.items, { ...t.projectCards.mentoring, link: MENTORING_VIDEO, videoId: 'W2y0QlShyd0', icon: null }];
+    return (
+        <>
+            <PageHeading label={t.projectCards.label} title={t.projectCards.title} />
+            <div className="os-projects-grid">
+                {projects.map((project, index) => (
+                    <motion.article
+                        className={`os-project${project.videoId ? ' os-project--video' : ''}`}
+                        key={project.title}
+                        whileHover={reduceMotion ? undefined : { y: -4 }}
+                        transition={{ type: 'spring', stiffness: 350, damping: 26 }}
+                    >
+                        {project.videoId && project.link && (
+                            <ExternalLink href={project.link} className="os-video-preview">
+                                <img src={`https://img.youtube.com/vi/${project.videoId}/hqdefault.jpg`} alt={project.title} width="480" height="360" loading="lazy" />
+                                <span className="os-play" aria-hidden="true">
+                                    ▷
+                                </span>
+                            </ExternalLink>
+                        )}
+                        <div className="os-project-content">
+                            <div className="os-project-meta">
+                                <span className="os-eyebrow">
+                                    0{index + 1} / {project.videoId ? 'VIDEO' : 'PROJECT'}
+                                </span>
+                                {project.period && <span>{project.period}</span>}
+                            </div>
+                            <h2>{project.title}</h2>
+                            <span className="os-role">{project.role}</span>
+                            <p>{project.desc}</p>
+                            <Tags items={project.tags} />
+                            {project.link && (
+                                <ExternalLink href={project.link} className="os-text-link">
+                                    {project.videoId ? (lang === 'ru' ? 'Смотреть запись' : 'Watch recording') : lang === 'ru' ? 'Открыть проект' : 'Open project'}
+                                    <Arrow diagonal />
+                                </ExternalLink>
+                            )}
+                        </div>
+                    </motion.article>
+                ))}
+            </div>
+        </>
+    );
+}
+
+function MentoringPage() {
+    const { t } = useLang();
+    const m = t.mentoring;
+    return (
+        <>
+            <PageHeading label={m.label} title={m.title} />
+            <div className="os-mentoring-layout">
+                <div>
+                    <div className="os-prose os-mentor-intro">
+                        <p>{m.about}</p>
+                        <p>{m.aboutExtra}</p>
+                    </div>
+                    <h2>{m.helpTitle}</h2>
+                    <ul className="os-list">
+                        {m.helpItems.map((item) => (
+                            <li key={item}>{item}</li>
+                        ))}
+                    </ul>
+                    <p className="os-disclaimer">{m.disclaimer}</p>
+                </div>
+                <aside className="os-price-panel">
+                    <span className="os-eyebrow">MENTORING / 1:1</span>
+                    <h2>{m.priceTitle}</h2>
+                    <dl className="os-prices">
+                        {m.prices.map((price) => (
+                            <div key={price.name}>
+                                <dt>{price.name}</dt>
+                                <dd>{price.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+                    <ExternalLink href="https://t.me/ra1n_xd" className="os-button os-button--primary">
+                        {m.cta}
+                        <Arrow diagonal />
+                    </ExternalLink>
+                </aside>
+            </div>
+        </>
+    );
+}
+
+function ContactPage() {
+    const { t } = useLang();
+    const contacts = [
+        ...t.contact.items,
+        { icon: null, label: 'Twitch', value: 'fronted_ra1n', href: 'https://www.twitch.tv/fronted_ra1n' },
+        { icon: null, label: 'CV / Resume', value: 'Google Drive', href: RESUME_URL }
+    ];
+    return (
+        <>
+            <PageHeading label={t.contact.label} title={t.contact.title} />
+            <p className="os-contact-description">{t.contact.desc}</p>
+            <div className="os-contacts">
+                {contacts.map((contact, index) => (
+                    <ExternalLink href={contact.href} className="os-contact-link" key={contact.label}>
+                        <span className="os-contact-index">0{index + 1}</span>
+                        <div>
+                            <span>{contact.label}</span>
+                            <strong>{contact.value}</strong>
+                        </div>
+                        <Arrow diagonal />
+                    </ExternalLink>
+                ))}
+            </div>
+        </>
+    );
+}
+
+const PAGES: Record<Section, () => ReactNode> = {
+    home: HomePage,
+    about: AboutPage,
+    skills: SkillsPage,
+    experience: CareerPage,
+    projects: ProjectsPage,
+    mentoring: MentoringPage,
+    contact: ContactPage
+};
+
+function Desktop() {
+    const { t, lang, toggleLang } = useLang();
+    const { theme, toggleTheme } = useTheme();
+    const reduceMotion = useReducedMotion();
+    const [active, setActive] = useState<Section>(readSection);
+    const contentRef = useRef<HTMLDivElement>(null);
+    const navigated = useRef(false);
+    const ru = lang === 'ru';
+    const sectionLabel = (section: Section) => (section === 'home' ? (ru ? 'Главная' : 'Home') : t.nav[section]);
+    const index = SECTIONS.indexOf(active);
+    const CurrentPage = PAGES[active];
+
+    useEffect(() => {
+        const onHashChange = () => {
+            if (window.location.hash === '#os-document') return;
+            navigated.current = true;
+            setActive(readSection());
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        };
+        window.addEventListener('hashchange', onHashChange);
+        return () => window.removeEventListener('hashchange', onHashChange);
+    }, []);
+    useEffect(() => {
+        document.documentElement.lang = lang;
+        document.title = `${t.hero.name} — ${active === 'home' ? 'Fullstack Developer' : t.nav[active]} | FrontEd OS`;
+    }, [lang, active, t]);
+    useEffect(() => {
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#171c2a' : '#e5e8f2');
+    }, [theme]);
+    const focusPage = () => {
+        if (navigated.current) contentRef.current?.focus({ preventScroll: true });
+    };
+
+    return (
+        <div className="os-shell">
+            <a className="os-skip-link" href="#os-document">
+                {ru ? 'Перейти к содержимому' : 'Skip to content'}
+            </a>
+            <header className="os-menubar">
+                <a href="#home" className="os-wordmark" aria-label="FrontEd OS">
+                    <img src={logo} alt="" width="28" height="28" />
+                    <span>
+                        Front<span>Ed</span>
+                        <small>OS</small>
+                    </span>
+                </a>
+                <span className="os-menubar-note">{ru ? 'Личное пространство' : 'Personal workspace'}</span>
+                <nav className="os-topnav" aria-label={ru ? 'Главная навигация' : 'Main navigation'}>
+                    {['about', 'experience', 'projects', 'mentoring'].map((section) => (
+                        <a key={section} href={`#${section}`} aria-current={active === section ? 'page' : undefined}>
+                            {sectionLabel(section as Section)}
+                        </a>
+                    ))}
+                </nav>
+                <div className="os-controls">
+                    <button type="button" onClick={toggleLang} aria-label={ru ? 'Switch to English' : 'Переключить на русский'}>
+                        {ru ? 'EN' : 'RU'}
+                    </button>
+                    <button
+                        type="button"
+                        onClick={toggleTheme}
+                        aria-label={ru ? (theme === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему') : theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+                    >
+                        <span aria-hidden="true">◐</span>
+                    </button>
+                    <a href="#contact" className="os-menubar-contact">
+                        {t.nav.contact}
+                        <Arrow diagonal />
+                    </a>
+                </div>
+            </header>
+            <div className="os-workspace">
+                <div className="os-desktop-heading">
+                    <span className="os-eyebrow">FRONTED / PERSONAL WORKSPACE</span>
+                    <span className="os-desktop-hint">{ru ? 'Открой папку. Познакомимся ближе.' : 'Open a folder. Get to know me.'}</span>
+                </div>
+                <div className="os-desktop">
+                    <nav className="os-dock" aria-label={ru ? 'Папки портфолио' : 'Portfolio folders'}>
+                        {SECTIONS.slice(1).map((section) => (
+                            <a className={`os-dock-item${active === section ? ' is-active' : ''}`} href={`#${section}`} key={section} aria-current={active === section ? 'page' : undefined}>
+                                <Folder section={section} />
+                                <span>{sectionLabel(section)}</span>
+                            </a>
+                        ))}
+                    </nav>
+                    <main className="os-window" id="os-document" tabIndex={-1} aria-label={sectionLabel(active)}>
+                        <div className="os-titlebar">
+                            <div className="os-window-dots" aria-hidden="true">
+                                <span />
+                                <span />
+                                <span />
+                            </div>
+                            <div className="os-window-path">
+                                <a href="#home">eduard</a>
+                                <span>/</span>
+                                <span>{SECTION_FILES[active]}</span>
+                            </div>
+                            <a className="os-home-button" href="#home" aria-label={ru ? 'На главную' : 'Go home'}>
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                    <path d="m3 10 9-7 9 7v10H3zm6 10v-7h6v7" />
+                                </svg>
+                            </a>
+                        </div>
+                        <AnimatePresence mode="wait" initial={false}>
+                            <motion.div
+                                key={active}
+                                className="os-document-content"
+                                ref={contentRef}
+                                tabIndex={-1}
+                                aria-labelledby="os-page-title"
+                                initial={{ opacity: 0, y: reduceMotion ? 0 : 24, scale: reduceMotion ? 1 : 0.985 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: reduceMotion ? 0 : -10, scale: reduceMotion ? 1 : 0.995 }}
+                                transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 280, damping: 28, mass: 0.8 }}
+                                onAnimationComplete={focusPage}
+                            >
+                                <CurrentPage />
+                            </motion.div>
+                        </AnimatePresence>
+                        <div className="os-window-footer">
+                            <span className="os-document-position">
+                                {String(index + 1).padStart(2, '0')} / 07 <span>{sectionLabel(active)}</span>
+                            </span>
+                            <div>
+                                {active !== 'home' && (
+                                    <a href={`#${SECTIONS[index - 1]}`} aria-label={`${ru ? 'Предыдущий раздел' : 'Previous section'}: ${sectionLabel(SECTIONS[index - 1])}`}>
+                                        <span aria-hidden="true">←</span>
+                                    </a>
+                                )}
+                                {index < SECTIONS.length - 1 && (
+                                    <a href={`#${SECTIONS[index + 1]}`} aria-label={`${ru ? 'Следующий раздел' : 'Next section'}: ${sectionLabel(SECTIONS[index + 1])}`}>
+                                        <Arrow />
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    </main>
+                </div>
+                <footer className="os-system-footer">
+                    <a href="#home">
+                        {t.footer.copy} <span>· FrontEd OS</span>
+                    </a>
+                    <span className="os-status">
+                        <span />
+                        {t.hero.badge}
+                    </span>
+                    <ExternalLink href={RESUME_URL}>
+                        CV / Resume
+                        <Arrow diagonal />
+                    </ExternalLink>
+                </footer>
+            </div>
+        </div>
+    );
+}
+
+export default function FrontEdOS() {
+    return (
+        <MotionConfig reducedMotion="user">
+            <Desktop />
+        </MotionConfig>
+    );
+}
