@@ -368,9 +368,9 @@ function ProjectsPage() {
                             <span className="os-role">{project.role}</span>
                             <p>{project.desc}</p>
                             <Tags items={project.tags} />
-                            {project.link && (
+                            {project.link && !project.videoId && (
                                 <ExternalLink href={project.link} className="os-text-link">
-                                    {project.videoId ? (lang === 'ru' ? 'Смотреть запись' : 'Watch recording') : lang === 'ru' ? 'Открыть проект' : 'Open project'}
+                                    {lang === 'ru' ? 'Открыть проект' : 'Open project'}
                                     <Arrow diagonal />
                                 </ExternalLink>
                             )}
