@@ -624,6 +624,7 @@
 }
 .os-projects-page {
     max-width: 1080px;
+    container-type: inline-size;
     margin-inline: auto;
     font-size: clamp(14px, 1vw, 16px);
 }
@@ -685,7 +686,7 @@
 .os-project--video {
     grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: minmax(220px, 34%) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: stretch;
 }
 .os-project--video .os-project-content {
@@ -702,7 +703,8 @@
     position: relative;
     display: grid;
     place-items: center;
-    align-self: stretch;
+    align-self: start;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     background: #0a0e1a;
 }
@@ -716,12 +718,9 @@
     object-fit: cover;
     transform: translateY(-50%);
     opacity: 0.8;
-    transition:
-        transform 0.5s,
-        opacity 0.5s;
+    transition: opacity 0.5s;
 }
 .os-video-preview:hover img {
-    transform: translateY(-50%) scale(1.04);
     opacity: 1;
 }
 .os-play {
@@ -1077,9 +1076,6 @@
     }
     .os-price-panel {
         max-width: 600px;
-    }
-    .os-project--video {
-        grid-template-columns: minmax(180px, 34%) minmax(0, 1fr);
     }
     .os-system-footer {
         padding-left: 100px;
@@ -1466,5 +1462,12 @@
     }
     .os-page-heading h1 {
         font-size: 27px;
+    }
+}
+
+/* Keep the full 16:9 picture when two columns would crowd the description. */
+@container (max-width: 900px) {
+    .os-project--video {
+        grid-template-columns: minmax(0, 1fr);
     }
 }
