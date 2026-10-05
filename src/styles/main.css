@@ -13,7 +13,6 @@
     --os-accent-ink: #07131f;
     --os-soft-accent: #172441;
     --os-folder-blue: #68cbff;
-    --os-folder-purple: #a79bff;
     --os-green: #76dba6;
     --os-shadow: #02040a;
     --os-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -34,13 +33,15 @@
     --os-accent-ink: #ffffff;
     --os-soft-accent: #e4edff;
     --os-folder-blue: #0078d4;
-    --os-folder-purple: #6352d8;
     --os-green: #257047;
     --os-shadow: #b8c9e6;
 }
 
 * {
     box-sizing: border-box;
+}
+html {
+    scrollbar-gutter: stable;
 }
 body {
     margin: 0;
