@@ -640,7 +640,7 @@
     background: var(--os-surface-raised);
 }
 .os-project-content {
-    padding: 22px;
+    padding: 18px 20px;
 }
 .os-project-meta {
     display: flex;
@@ -655,7 +655,7 @@
     white-space: nowrap;
 }
 .os-project h2 {
-    margin-top: 18px;
+    margin-top: 12px;
     font-size: 1.55em;
 }
 .os-role {
@@ -665,16 +665,16 @@
     font-size: 0.78em;
 }
 .os-project p {
-    margin: 18px 0;
+    margin: 12px 0;
     max-width: 80ch;
     font-size: 0.93em;
-    line-height: 1.85;
+    line-height: 1.7;
 }
 .os-text-link {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    margin-top: 24px;
+    margin-top: 16px;
     color: var(--os-accent);
     font-size: 0.85em;
     font-weight: 600;
@@ -686,7 +686,7 @@
 .os-project--video {
     grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: clamp(420px, 35%, 440px) minmax(0, 1fr);
     align-items: stretch;
 }
 .os-project--video .os-project-content {
@@ -1468,6 +1468,7 @@
 /* Keep the full 16:9 picture when two columns would crowd the description. */
 @container (max-width: 900px) {
     .os-project--video {
+        grid-column: auto;
         grid-template-columns: minmax(0, 1fr);
     }
 }
