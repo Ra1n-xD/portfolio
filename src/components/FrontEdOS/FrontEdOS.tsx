@@ -531,7 +531,10 @@ function Desktop() {
                                     onClick={toggleTheme}
                                     aria-label={ru ? (theme === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему') : theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
                                 >
-                                    <span aria-hidden="true">◐</span>
+                                    <svg className="os-theme-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                                        <path d="M12 3a9 9 0 0 0 0 18Z" fill="currentColor" />
+                                    </svg>
                                 </button>
                             </div>
                         </div>
