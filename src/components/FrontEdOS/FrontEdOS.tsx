@@ -2,7 +2,8 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'framer-motion';
 import { useLang, type Translations } from '@/Context/LangContext';
 import { useTheme } from '@/Context/ThemeContext';
-import portrait from '@/assets/me.png';
+import ParticleCanvas from '@/components/Background/ParticleCanvas';
+import portrait from '@/assets/me.jpg';
 import logo from '@/assets/fronted-logo.png';
 import './FrontEdOS.css';
 
@@ -25,10 +26,51 @@ function Arrow({ diagonal = false }: { diagonal?: boolean }) {
 }
 
 function Folder({ section }: { section: Section }) {
+    const icons: Record<Section, ReactNode> = {
+        home: <path d="m3 10 9-7 9 7v10H3zm6 10v-7h6v7" />,
+        about: (
+            <>
+                <circle cx="12" cy="7" r="4" />
+                <path d="M4 21v-2a8 8 0 0 1 16 0v2" />
+            </>
+        ),
+        skills: (
+            <>
+                <path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 4l-4 16" />
+            </>
+        ),
+        experience: (
+            <>
+                <rect x="3" y="7" width="18" height="14" rx="2" />
+                <path d="M8 7V4h8v3M3 12l9 3 9-3m-9 1v4" />
+            </>
+        ),
+        projects: (
+            <>
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+            </>
+        ),
+        mentoring: (
+            <>
+                <path d="m2 8 10-5 10 5-10 5-10-5zm4 3v6c4 3 8 3 12 0v-6m4-3v9" />
+            </>
+        ),
+        contact: (
+            <>
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m2 7 10 7L22 7" />
+            </>
+        )
+    };
     return (
         <span className={`os-folder os-folder--${section}`} aria-hidden="true">
             <span className="os-folder-mark">
-                {section === 'about' ? 'me' : section === 'skills' ? '</>' : section === 'experience' ? '↗' : section === 'projects' ? '✳' : section === 'mentoring' ? '01' : '@'}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    {icons[section]}
+                </svg>
             </span>
         </span>
     );
@@ -97,20 +139,20 @@ function HomePage() {
                     <div>
                         <span className="os-eyebrow">FULLSTACK / TEAMLEAD / MENTOR</span>
                         <h1 id="os-page-title">
-                            {t.hero.firstName}
-                            <br />
-                            {t.hero.lastName}
+                            <span>{t.hero.firstName}</span> <span className="os-name-accent">{t.hero.lastName}</span>
                         </h1>
                     </div>
                 </div>
                 <p className="os-home-description">{t.hero.desc}</p>
                 <Tags items={['React', 'TypeScript', 'Next.js', 'NestJS']} />
                 <div className="os-actions">
-                    <a href="#projects" className="os-button os-button--primary">
+                    <a href="#projects" className="os-shortcut">
+                        <Folder section="projects" />
                         {t.projectCards.title}
                         <Arrow />
                     </a>
-                    <a href="#experience" className="os-button">
+                    <a href="#experience" className="os-shortcut">
+                        <Folder section="experience" />
                         {t.hero.viewExperience}
                         <Arrow />
                     </a>
@@ -128,7 +170,7 @@ function HomePage() {
                     <Arrow diagonal />
                 </a>
                 <a className="os-project-shortcut" href="#projects">
-                    <Folder section="experience" />
+                    <Folder section="projects" />
                     <div>
                         <strong>ManipulA</strong>
                         <span>TeamLead · Telegram Bot</span>
@@ -146,7 +188,8 @@ function HomePage() {
                         </ExternalLink>
                     ))}
                 </div>
-                <a href="#contact" className="os-all-links">
+                <a href="#contact" className="os-all-links os-shortcut">
+                    <Folder section="contact" />
                     {ru ? 'Все контакты' : 'All contact links'}
                     <Arrow />
                 </a>
@@ -378,7 +421,11 @@ function Desktop() {
             if (window.location.hash === '#os-document') return;
             navigated.current = true;
             setActive(readSection());
-            window.scrollTo({ top: 0, behavior: 'instant' });
+            if (window.matchMedia('(max-width: 700px)').matches) {
+                document.getElementById('os-document')?.scrollIntoView({ block: 'start', behavior: 'instant' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            }
         };
         window.addEventListener('hashchange', onHashChange);
         return () => window.removeEventListener('hashchange', onHashChange);
@@ -388,7 +435,7 @@ function Desktop() {
         document.title = `${t.hero.name} — ${active === 'home' ? 'Fullstack Developer' : t.nav[active]} | FrontEd OS`;
     }, [lang, active, t]);
     useEffect(() => {
-        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#171c2a' : '#e5e8f2');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#070a12' : '#f0f4ff');
     }, [theme]);
     const focusPage = () => {
         if (navigated.current) contentRef.current?.focus({ preventScroll: true });
@@ -396,56 +443,47 @@ function Desktop() {
 
     return (
         <div className="os-shell">
-            <a className="os-skip-link" href="#os-document">
+            <ParticleCanvas />
+            <a
+                className="os-skip-link"
+                href="#os-document"
+                onClick={(event) => {
+                    event.preventDefault();
+                    document.getElementById('os-document')?.focus();
+                }}
+            >
                 {ru ? 'Перейти к содержимому' : 'Skip to content'}
             </a>
-            <header className="os-menubar">
-                <a href="#home" className="os-wordmark" aria-label="FrontEd OS">
-                    <img src={logo} alt="" width="28" height="28" />
-                    <span>
-                        Front<span>Ed</span>
-                        <small>OS</small>
-                    </span>
-                </a>
-                <span className="os-menubar-note">{ru ? 'Личное пространство' : 'Personal workspace'}</span>
-                <nav className="os-topnav" aria-label={ru ? 'Главная навигация' : 'Main navigation'}>
-                    {['about', 'experience', 'projects', 'mentoring'].map((section) => (
-                        <a key={section} href={`#${section}`} aria-current={active === section ? 'page' : undefined}>
-                            {sectionLabel(section as Section)}
-                        </a>
-                    ))}
-                </nav>
-                <div className="os-controls">
-                    <button type="button" onClick={toggleLang} aria-label={ru ? 'Switch to English' : 'Переключить на русский'}>
-                        {ru ? 'EN' : 'RU'}
-                    </button>
-                    <button
-                        type="button"
-                        onClick={toggleTheme}
-                        aria-label={ru ? (theme === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему') : theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-                    >
-                        <span aria-hidden="true">◐</span>
-                    </button>
-                    <a href="#contact" className="os-menubar-contact">
-                        {t.nav.contact}
-                        <Arrow diagonal />
-                    </a>
-                </div>
-            </header>
             <div className="os-workspace">
-                <div className="os-desktop-heading">
-                    <span className="os-eyebrow">FRONTED / PERSONAL WORKSPACE</span>
-                    <span className="os-desktop-hint">{ru ? 'Открой папку. Познакомимся ближе.' : 'Open a folder. Get to know me.'}</span>
-                </div>
                 <div className="os-desktop">
-                    <nav className="os-dock" aria-label={ru ? 'Папки портфолио' : 'Portfolio folders'}>
-                        {SECTIONS.slice(1).map((section) => (
-                            <a className={`os-dock-item${active === section ? ' is-active' : ''}`} href={`#${section}`} key={section} aria-current={active === section ? 'page' : undefined}>
-                                <Folder section={section} />
-                                <span>{sectionLabel(section)}</span>
-                            </a>
-                        ))}
-                    </nav>
+                    <aside className="os-sidebar">
+                        <nav className="os-dock" aria-label={ru ? 'Папки портфолио' : 'Portfolio folders'}>
+                            {SECTIONS.map((section) => (
+                                <a className={`os-dock-item${active === section ? ' is-active' : ''}`} href={`#${section}`} key={section} aria-current={active === section ? 'page' : undefined}>
+                                    <Folder section={section} />
+                                    <span>{sectionLabel(section)}</span>
+                                </a>
+                            ))}
+                        </nav>
+                        <div className="os-desktop-settings">
+                            <span className="os-desktop-brand">
+                                <img src={logo} alt="" width="22" height="22" />
+                                FrontEd OS
+                            </span>
+                            <div className="os-controls">
+                                <button type="button" onClick={toggleLang} aria-label={ru ? 'Switch to English' : 'Переключить на русский'}>
+                                    {ru ? 'EN' : 'RU'}
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={toggleTheme}
+                                    aria-label={ru ? (theme === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему') : theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+                                >
+                                    <span aria-hidden="true">◐</span>
+                                </button>
+                            </div>
+                        </div>
+                    </aside>
                     <main className="os-window" id="os-document" tabIndex={-1} aria-label={sectionLabel(active)}>
                         <div className="os-titlebar">
                             <div className="os-window-dots" aria-hidden="true">
@@ -454,15 +492,11 @@ function Desktop() {
                                 <span />
                             </div>
                             <div className="os-window-path">
-                                <a href="#home">eduard</a>
+                                <span>eduard</span>
                                 <span>/</span>
                                 <span>{SECTION_FILES[active]}</span>
                             </div>
-                            <a className="os-home-button" href="#home" aria-label={ru ? 'На главную' : 'Go home'}>
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                                    <path d="m3 10 9-7 9 7v10H3zm6 10v-7h6v7" />
-                                </svg>
-                            </a>
+                            <span className="os-titlebar-label">{sectionLabel(active)}</span>
                         </div>
                         <AnimatePresence mode="wait" initial={false}>
                             <motion.div
@@ -484,25 +518,17 @@ function Desktop() {
                             <span className="os-document-position">
                                 {String(index + 1).padStart(2, '0')} / 07 <span>{sectionLabel(active)}</span>
                             </span>
-                            <div>
-                                {active !== 'home' && (
-                                    <a href={`#${SECTIONS[index - 1]}`} aria-label={`${ru ? 'Предыдущий раздел' : 'Previous section'}: ${sectionLabel(SECTIONS[index - 1])}`}>
-                                        <span aria-hidden="true">←</span>
-                                    </a>
-                                )}
-                                {index < SECTIONS.length - 1 && (
-                                    <a href={`#${SECTIONS[index + 1]}`} aria-label={`${ru ? 'Следующий раздел' : 'Next section'}: ${sectionLabel(SECTIONS[index + 1])}`}>
-                                        <Arrow />
-                                    </a>
-                                )}
-                            </div>
+                            <a href="#home" className="os-return-folder">
+                                <Folder section="home" />
+                                <span>{ru ? 'Главная' : 'Home'}</span>
+                            </a>
                         </div>
                     </main>
                 </div>
                 <footer className="os-system-footer">
-                    <a href="#home">
+                    <span>
                         {t.footer.copy} <span>· FrontEd OS</span>
-                    </a>
+                    </span>
                     <span className="os-status">
                         <span />
                         {t.hero.badge}

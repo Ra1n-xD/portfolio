@@ -14,9 +14,12 @@ export default function ParticleCanvas() {
     const { theme } = useTheme();
 
     useEffect(() => {
-        const canvas = canvasRef.current!;
-        const ctx = canvas.getContext('2d')!;
-        let raf: number;
+        const canvas = canvasRef.current;
+        const context = canvas?.getContext('2d');
+        if (!canvas || !context) return;
+        const ctx = context;
+        const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let raf = 0;
         let W = 0,
             H = 0;
         const mouse = { x: -9999, y: -9999 };
@@ -53,7 +56,7 @@ export default function ParticleCanvas() {
                 const mx = this.x - mouse.x,
                     my = this.y - mouse.y;
                 const md = Math.sqrt(mx * mx + my * my);
-                if (md < 100) {
+                if (md > 0 && md < 100) {
                     this.x += (mx / md) * 0.6;
                     this.y += (my / md) * 0.6;
                 }
@@ -75,11 +78,12 @@ export default function ParticleCanvas() {
         function resize() {
             const prevW = W;
             const prevH = H;
-            W = canvas.offsetWidth;
-            H = canvas.offsetHeight;
-            canvas.width = W * devicePixelRatio;
-            canvas.height = H * devicePixelRatio;
-            ctx.scale(devicePixelRatio, devicePixelRatio);
+            W = canvas!.offsetWidth;
+            H = canvas!.offsetHeight;
+            const ratio = Math.min(window.devicePixelRatio || 1, 2);
+            canvas!.width = Math.round(W * ratio);
+            canvas!.height = Math.round(H * ratio);
+            ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
             if (prevW > 0 && prevH > 0 && particles.length) {
                 const scaleX = W / prevW;
                 const scaleY = H / prevH;
@@ -88,10 +92,12 @@ export default function ParticleCanvas() {
                     p.y *= scaleY;
                 });
             }
+            const count = Math.min(PARTICLE_COUNT, Math.max(45, Math.round((W * H) / 6500)));
+            particles = particles.slice(0, count);
+            while (particles.length < count) particles.push(new Particle());
         }
 
         resize();
-        particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
 
         function drawConnections() {
             for (let i = 0; i < particles.length; i++) {
@@ -113,8 +119,8 @@ export default function ParticleCanvas() {
         }
 
         let t = 0;
-        function drawGradientOrbs() {
-            t += 0.003;
+        function drawGradientOrbs(animate: boolean) {
+            if (animate) t += 0.003;
             const orbs = [
                 { x: W * 0.15 + Math.sin(t * 0.7) * W * 0.06, y: H * 0.2 + Math.cos(t * 0.5) * H * 0.08, r: Math.min(W, H) * 0.38, c: isDark ? 'rgba(56,182,255,0.015)' : 'rgba(0,120,212,0.01)' },
                 { x: W * 0.82 + Math.cos(t * 0.6) * W * 0.05, y: H * 0.65 + Math.sin(t * 0.8) * H * 0.06, r: Math.min(W, H) * 0.32, c: isDark ? 'rgba(99,102,241,0.015)' : 'rgba(80,72,229,0.008)' },
@@ -129,21 +135,32 @@ export default function ParticleCanvas() {
             });
         }
 
-        function loop() {
+        function draw(animate: boolean) {
             ctx.clearRect(0, 0, W, H);
-            drawGradientOrbs();
+            drawGradientOrbs(animate);
             drawConnections();
             particles.forEach((p) => {
-                p.update();
+                if (animate) p.update();
                 p.draw();
             });
+        }
+
+        function loop() {
+            draw(true);
             raf = requestAnimationFrame(loop);
         }
 
-        loop();
+        const syncAnimation = () => {
+            cancelAnimationFrame(raf);
+            if (motionPreference.matches || document.hidden) draw(false);
+            else loop();
+        };
+
+        syncAnimation();
 
         const onResize = () => {
             resize();
+            if (motionPreference.matches || document.hidden) draw(false);
         };
         const onMove = (e: MouseEvent) => {
             mouse.x = e.clientX;
@@ -157,18 +174,23 @@ export default function ParticleCanvas() {
         window.addEventListener('resize', onResize);
         window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseleave', onLeave);
+        motionPreference.addEventListener('change', syncAnimation);
+        document.addEventListener('visibilitychange', syncAnimation);
 
         return () => {
             cancelAnimationFrame(raf);
             window.removeEventListener('resize', onResize);
             window.removeEventListener('mousemove', onMove);
             window.removeEventListener('mouseleave', onLeave);
+            motionPreference.removeEventListener('change', syncAnimation);
+            document.removeEventListener('visibilitychange', syncAnimation);
         };
     }, [theme]);
 
     return (
         <canvas
             ref={canvasRef}
+            aria-hidden="true"
             style={{
                 position: 'fixed',
                 inset: 0,
